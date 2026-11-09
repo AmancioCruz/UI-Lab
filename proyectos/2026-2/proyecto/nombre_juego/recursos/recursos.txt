@@ -1,0 +1,3 @@
+Guarda aquí las imágenes, los sprites, los sonidos y otros archivos multimedia que utilice el juego.
+
+Por ejemplo, una imagen guardada aquí se puede referenciar desde index.html como recursos/personaje.png.

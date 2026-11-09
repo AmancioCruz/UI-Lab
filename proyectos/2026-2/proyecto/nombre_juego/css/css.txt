@@ -1,0 +1,3 @@
+Guarda aquí las hojas de estilo (.css) que definen la apariencia del juego, como los colores, la distribución de los elementos y las animaciones visuales.
+
+Por ejemplo, puedes enlazar css/estilo.css desde index.html.

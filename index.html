@@ -1,21 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI Lab | Inicio</title>
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body>
-    <header class="cabecera">
-        <div class="contenedor-logo">
 
+<body id="inicio">
+    <header class="cabecera">
+        <div class="contenedor">
+            <a class="contenedor-logo" href="#inicio" aria-label="UI Lab, inicio">
+                <span>UI<span class="logo-punto">.</span></span>
+                <span>LAB</span>
+            </a>
+
+            <nav class="barra-navegacion" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="#inicio" aria-current="page">Inicio</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#acerca">Acerca de</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav class="barra-navegacion">
-            <ul>
-                <li>Semestres</li>
-            </ul>
-        </nav>
     </header>
-    
+    <main id="contenido-principal">
+        <section class="portada contenedor" aria-labelledby="titulo-portada">
+            <div>
+                <h1 id="titulo-portada">UI Lab</h1>
+                <p>UI Diseño y Desarrollo de Interfaz Dinámica</p>
+                <a class="boton-portada" href="#proyectos">Ver proyectos</a>
+            </div>
+            <img src="recursos/img/interfaz.svg" alt="" width="480" height="340">
+        </section>
+
+        <section class="acerca" id="acerca" aria-labelledby="titulo-acerca">
+            <div class="contenedor">
+                <h2 id="titulo-acerca">¿Qué es UI Lab?</h2>
+
+                <p>
+                    UI Lab reúne los proyectos de la materia UI Diseño y Desarrollo de
+                    Interfaz Dinámica. En clase exploramos cómo combinar diseño
+                    visual, programación e interacción para crear experiencias web.
+                </p>
+            </div>
+        </section>
+
+        <section class="proyectos" id="proyectos" aria-labelledby="titulo-proyectos">
+            <div class="contenedor">
+                <h2 id="titulo-proyectos">Proyectos del semestre <span class="semestre">2026-2</span></h2>
+
+                <div class="categorias">
+                    <section class="categoria" aria-labelledby="titulo-minijuegos">
+                        <h3 id="titulo-minijuegos">Minijuegos</h3>
+
+                        <div class="contenedor-proyectos">
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/docente/index.html">
+                                <img src="recursos/img/piedra-papel-tijera.svg" alt="" width="600" height="320">
+                                <div class="tarjeta-contenido">
+                                    <h4>Piedra, papel o tijera</h4>
+                                    <p>Proyecto de ejemplo · Docente</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="categoria" aria-labelledby="titulo-animaciones">
+                        <h3 id="titulo-animaciones">Animaciones</h3>
+
+                        <div class="contenedor-proyectos">
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/jardin-animado/index.html">
+                                <img src="recursos/img/jardin.svg" alt="" width="600" height="320">
+                                <div class="tarjeta-contenido">
+                                    <h4>Jardín animado</h4>
+                                    <p>Proyecto estudiantil</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="pie contenedor">
+        <p>UI Lab · UI Diseño y Desarrollo de Interfaz Dinámica</p>
+    </footer>
 </body>
+
 </html>

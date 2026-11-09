@@ -1,0 +1,3 @@
+Guarda aquí los archivos JavaScript (.js) con la lógica y las interacciones del juego, como los controles, el puntaje y las reglas.
+
+Por ejemplo, puedes cargar js/script.js desde index.html.

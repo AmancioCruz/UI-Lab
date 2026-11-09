@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320">
+  <defs>
+    <linearGradient id="cielo" x2="1" y2="1">
+      <stop stop-color="#653BC3"/>
+      <stop offset="1" stop-color="#32185C"/>
+    </linearGradient>
+    <path id="petalo" d="M0 8C-47-8-43-75 0-75S47-8 0 8Z"/>
+  </defs>
+  <rect width="600" height="320" fill="url(#cielo)"/>
+  <path d="M0 237C21 124 71 66 136 56 120 135 70 210 0 237Zm600 26c-72-11-114-58-127-121 60-4 103 30 127 69z" fill="#5BD289"/>
+  <path d="M0 320V201c56-53 106-48 156-15-38 45-89 74-143 86 62-20 118-13 175 48zm600 0H414c40-45 85-60 137-55-15-12-25-25-33-44 33-18 62-13 82 3z" fill="#087B6B"/>
+  <path d="M228 320c-5-54-1-100 16-155m141 155c6-45 14-66 39-99" fill="none" stroke="#75D87B" stroke-width="12"/>
+  <path d="M230 304c-65-4-101-37-112-78 47-1 91 26 112 78zm1-8c28-45 65-58 103-55-10 37-49 67-103 55zm158 12c-43-12-64-36-73-69 39 5 67 24 73 69z" fill="#8EE671"/>
+  <g transform="translate(246 151)" fill="#F8FAFC">
+    <use href="#petalo"/><use href="#petalo" transform="rotate(72)"/><use href="#petalo" transform="rotate(144)"/>
+    <use href="#petalo" transform="rotate(216)"/><use href="#petalo" transform="rotate(288)"/>
+    <circle r="24" fill="#D9FF43"/>
+  </g>
+  <g transform="translate(425 211) scale(.64)" fill="#D8B4FE">
+    <use href="#petalo"/><use href="#petalo" transform="rotate(72)"/><use href="#petalo" transform="rotate(144)"/>
+    <use href="#petalo" transform="rotate(216)"/><use href="#petalo" transform="rotate(288)"/>
+    <circle r="24" fill="#D9FF43"/>
+  </g>
+  <path d="m435 89 8-27m10 35 23-18" fill="none" stroke="#D9FF43" stroke-width="9" stroke-linecap="round"/>
+</svg>

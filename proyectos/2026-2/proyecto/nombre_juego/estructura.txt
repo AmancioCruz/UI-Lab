@@ -1,0 +1,22 @@
+ESTRUCTURA DE ENTREGA DEL JUEGO
+
+Para entregar, usa tu matrícula en lugar de proyecto como nombre de la
+carpeta principal. Conserva los demás nombres tal como aparecen en el árbol.
+
+proyecto/
+├── nombre_juego_presentación.pdf
+├── portada.png
+└── nombre_juego/
+    ├── index.html
+    ├── css/
+    ├── js/
+    └── recursos/
+
+En la carpeta de tu matrícula coloca nombre_juego/, la presentación del
+juego (nombre_juego_presentación.pdf) y la imagen de su tarjeta (portada.png).
+La imagen debe estar en formato PNG y medir 500 × 500 píxeles. Se mostrará
+en el index.html principal de UI Lab.
+
+Dentro de nombre_juego/ coloca el index.html del juego y las tres carpetas
+obligatorias. Guarda las hojas de estilo en css/, el código JavaScript en js/
+y las imágenes y los sonidos que se usan dentro del juego en recursos/.
