@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snake Mines</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/juego.js" defer></script>
 </head>
 <body>
-    
+    <main class="game-container">
+        <header class="game-header">
+            <h1>Minas y Serpientes</h1>
+        </header>
+        <section class="game-info">
+            <article class="score">
+                <h3>Puntuación</h3>
+                <span id="score">0</span>
+            </article>
+            <article class="mines">
+                <h3>Minas</h3>
+                <span id="mineCount">0</span>
+            </article>
+        </section>
+
+        <section class="board-container">
+            <div id="gameBoard" class="game-board"></div>
+        </section>
+
+        <section class="game-controls">
+            <button id="startBtn">
+                Iniciar juego
+            </button>
+            <button id="restartBtn">
+                Reiniciar
+            </button>
+
+        </section>
+
+        <section id="gameMessage" class="game-message">
+            <h2 id="messageTitle"></h2>
+            <p id="messageText"></p>
+        </section>
+    </main>
 </body>
 </html>
