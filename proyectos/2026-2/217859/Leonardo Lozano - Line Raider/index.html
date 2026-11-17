@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Line Rider Responsivo</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <div class="toolbar">
+        <button id="btn-dibujar" class="activo">✏️ Dibujar</button>
+        <button id="btn-play">▶️ Jugar</button>
+        <button id="btn-reiniciar">🔄 Reiniciar</button>
+        <button id="btn-borrar">🗑️ Borrar</button>
+        <span class="info-nivel">Nivel: <span id-="nivel-texto">1</span></span>
+    </div>
+
+    <div class="pizarron-marco">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script type="module" src="js/index.js"></script>
+</body>
+
+</html>
