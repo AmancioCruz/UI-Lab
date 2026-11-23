@@ -1,0 +1,246 @@
+
+:root {
+    --morado-oscuro: #211044;
+    --morado: #32185C;
+    --lima: #D9FF43;
+    --turquesa: #54F0DF;
+    --coral: #FF784F;
+    --blanco: #F8FAFC;
+    --lavanda: #E3D9F5;
+}
+
+/* Configuración general */
+body {
+    min-height: 100vh;
+    background-color: var(--morado-oscuro);
+    color: var(--blanco);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 30px 15px;
+}
+
+/* Contenedor principal */
+.presentation-container {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    background-color: var(--morado);
+    border: 2px solid var(--turquesa);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow:
+        0 0 15px rgba(84, 240, 223, 0.2),
+        0 0 35px rgba(84, 240, 223, 0.1);
+}
+
+/* Encabezado */
+.presentation-header {
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 25px 10px;
+    border-bottom: 2px solid var(--turquesa);
+}
+
+.subtitle {
+    color: var(--turquesa);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.presentation-header h1 {
+    color: var(--lima);
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    text-shadow: 0 0 15px rgba(217, 255, 67, 0.5);
+}
+
+.header-description {
+    color: var(--lavanda);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-top: 10px;
+}
+
+/* Secciones informativas */
+.info-section {
+    background-color: var(--morado-oscuro);
+    border: 1px solid rgba(84, 240, 223, 0.4);
+    border-left: 4px solid var(--turquesa);
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 20px;
+    transition: 0.2s ease;
+}
+
+.info-section:hover {
+    border-color: var(--lima);
+    box-shadow: 0 0 12px rgba(217, 255, 67, 0.15);
+}
+
+/* Títulos de las secciones */
+.info-section h2 {
+    color: var(--lima);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+/* Texto */
+.info-section p,
+.info-section li {
+    color: var(--lavanda);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.info-section ul {
+    padding-left: 25px;
+}
+
+.info-section li {
+    margin-bottom: 5px;
+}
+
+.info-section li::marker {
+    color: var(--turquesa);
+}
+
+/* Controles */
+.controls-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.key-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.arrow-group {
+    margin-top: 15px;
+}
+
+.arrow-group div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.key {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--morado);
+    color: var(--turquesa);
+    border: 2px solid var(--turquesa);
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(84, 240, 223, 0.2);
+}
+
+/* Paleta de colores */
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0 10px;
+}
+
+.color-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    border: 2px solid var(--blanco);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.purple {
+    background-color: var(--morado-oscuro);
+}
+
+.turquoise {
+    background-color: var(--turquesa);
+}
+
+.lime {
+    background-color: var(--lima);
+}
+
+.coral {
+    background-color: var(--coral);
+}
+
+.palette-description {
+    text-align: center;
+    font-size: 0.8rem !important;
+    letter-spacing: 2px;
+}
+
+/* Ficha técnica */
+.technical-section {
+    border-left-color: var(--coral);
+}
+
+.technical-data p {
+    margin-bottom: 10px;
+}
+
+.technical-data strong {
+    color: var(--turquesa);
+}
+
+/* Pie de página */
+.presentation-footer {
+    text-align: center;
+    padding: 35px 10px 10px;
+    border-top: 2px solid var(--turquesa);
+    margin-top: 35px;
+}
+
+.presentation-footer > p:first-child {
+    color: var(--lavanda);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+/* Botón para iniciar */
+.play-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: var(--lima);
+    color: var(--morado-oscuro);
+    border: 2px solid var(--lima);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(217, 255, 67, 0.3);
+    transition: 0.2s ease;
+}
+
+.play-button:hover {
+    background-color: var(--turquesa);
+    border-color: var(--turquesa);
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(84, 240, 223, 0.5);
+}
+
+.play-button:active {
+    transform: scale(0.96);
+}
+
+.footer-text {
+    color: var(--turquesa);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+

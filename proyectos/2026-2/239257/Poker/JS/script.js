@@ -80,7 +80,7 @@ const HAND_RANKS = {
 
 // --- ESTADO DEL JUEGO ---
 let state = {
-  coins: 10,
+  coins: 30,
   currentBet: 1,
   winStreak: 0,
   phase: 'BETTING', // BETTING, DRAWING, REVEAL
@@ -327,12 +327,12 @@ function resolveWinner() {
     state.coins += totalWon;
     playSound('win');
     updateStarDisplay();
-    setLuigiExpression('sad', `¡Ganaste! Tu ${playerEval.type.name} supera mi mano. +${totalWon} 🪙`);
+    setLuigiExpression('sad', `Oooh noooo! Ganaste! Tu ${playerEval.type.name} supera mi mano. +${totalWon} 🪙`);
   } else if (result < 0) {
     state.winStreak = 0;
     playSound('lose');
     updateStarDisplay();
-    setLuigiExpression('happy', `¡Gano yo! Mi mano vence a tu ${playerEval.type.name}. ¡Sigue intentándolo!`);
+    setLuigiExpression('happy', `Wahooo!! Gano yo!! Mi mano vence tu ${playerEval.type.name}. ¡Sigue intentándolo!`);
   } else {
     state.coins += state.currentBet;
     playSound('select');
@@ -349,6 +349,7 @@ function updateUI() {
 // --- CONTROLES DE APUESTA ---
 elBtnAddBet.onclick = () => {
   initAudio();
+  //evita que puedas apostar mas de lo que tu dinero te deja
   if (state.currentBet < Math.min(state.coins, 5)) {
     state.currentBet++;
     playSound('select');
@@ -358,6 +359,7 @@ elBtnAddBet.onclick = () => {
 
 elBtnSubBet.onclick = () => {
   initAudio();
+  //evita que la apuesta sea 0
   if (state.currentBet > 1) {
     state.currentBet--;
     playSound('select');
@@ -367,7 +369,7 @@ elBtnSubBet.onclick = () => {
 
 elBtnAction.onclick = handleAction;
 
-// --- INICIALIZACIÓN ---
+// --- INICIO ---
 updateUI();
 updateStarDisplay();
-setLuigiExpression('happy', '¡Bienvenido al Picture Poker! Haz tu apuesta para comenzar.');
+setLuigiExpression('happy', '¡Bienvenido a Luigi´s Poker Night! Haz tu apuesta para comenzar.');
