@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Princess Daisy Run</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h1>Princess Daisy Run</h1>
+
+    <!--contenedor principal donde desarrollare el juego-->
+    <div id="juego">
+
+        <!--fondo y sus capas-->
+        <div id="fondo">
+            <!--imagen del paisaje-->
+            <div id="paisaje"></div>
+
+            <!--imagen de las nubes-->
+            <div id="nubes"></div>
+        </div>
+
+        <div id="puntuacion">0</div>
+
+        <!--daisy-->
+        <img id="daisy" src="recursos/daisy/daisycorriendo.png" alt="Daisy">
+
+        <!--piso-->
+        <div id="suelo"></div>
+
+        <!--usamos hidden porque queremos que el boton no se muestre mientras el juego esta corriendo-->
+        <div id="mensajegameover" hidden>GAME OVER</div>
+        <!--boton para jugar otra vez-->
+        <button id="btnReiniciar" hidden>PLAY AGAIN</button>   
+
+    </div>
+
+    <script src="js/escenario.js"></script>
+    <script src="js/enemigos.js"></script>
+    <script src="js/colisiones.js"></script>
+    <script src="js/sonidos.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

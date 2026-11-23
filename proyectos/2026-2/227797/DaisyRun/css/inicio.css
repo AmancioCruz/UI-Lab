@@ -1,0 +1,183 @@
+/* estilos generales */
+:root {
+    --morado-oscuro: #211044;
+    --morado: #32185C;
+    --lima: #D9FF43;
+    --turquesa: #54F0DF;
+    --coral: #FF784F;
+    --blanco: #F8FAFC;
+    --lavanda: #E3D9F5;
+    --blanco-puro: #FFFFFF;
+    --gris-azulado: #F2F7FA;
+    --gris-lavanda: #D3CDE3;
+}
+/* configuracion general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--gris-azulado);
+    font-family: Arial, sans-serif;
+    color: var(--morado-oscuro);
+}
+
+/* encabezado principal */
+header {
+    background-color: var(--morado-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    color: var(--lima);
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+header a {
+    display: inline-block;
+    background-color: var(--lima);
+    color: var(--morado-oscuro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 14px 30px;
+    border-radius: 8px;
+}
+
+/*miniatura*/
+header img {
+    display: block;
+    width: 15%;
+    max-width: 160px;
+    margin: 15px auto;
+    border-radius: 10px;
+}
+
+/*contenido principal*/
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/*sections*/
+section {
+    background-color: var(--blanco-puro);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    border-top: 5px solid var(--morado-oscuro);
+    transition: 0.3s;
+}
+section h2 {
+    color: var(--morado);
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+section p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+section ul {
+    padding-left: 25px;
+}
+
+section li {
+    font-size: 16px;
+    line-height: 1.8;
+}
+section:hover {
+    transform: translateY(-5px);
+}
+
+header a {
+    transition: 0.3s;
+}
+
+header a:hover {
+    background-color: var(--turquesa);
+    transform: scale(1.05);
+}
+
+#ficha-tecnica {
+    background-color: var(--lavanda);
+    grid-column: 1 / 3;
+}
+
+#concepto {
+    background-color: var(--lavanda);
+}
+
+#controles {
+    background-color: var(--turquesa);
+}
+
+#mecanicas {
+    background-color: var(--lima);
+}
+
+#reglas {
+    background-color: var(--coral);
+}
+
+#funcionamiento {
+    background-color: var(--gris-lavanda);
+}
+
+#estilo-visual {
+    background-color: var(--lavanda);
+}
+
+/*estilo footer*/
+footer {
+    background-color: var(--morado-oscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 30px 20px;
+}
+footer h2 {
+    color: var(--lima);
+    margin-bottom: 12px;
+    font-size: 24px;
+}
+footer p {
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/*celulares*/
+@media (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr;
+        width: 92%;
+    }
+    #ficha-tecnica {
+        grid-column: 1;
+    }
+    header h1 {
+        font-size: 36px;
+    }
+    header img {
+        width: 30%;
+    }
+    header a {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    header p {
+        font-size: 16px;
+    }
+}
+
+
