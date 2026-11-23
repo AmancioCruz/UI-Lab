@@ -1,5 +1,4 @@
 :root {
-    /* Semestre 2026-2 */
     --morado-oscuro: #211044;
     --morado: #32185C;
     --lima: #D9FF43;
@@ -23,7 +22,7 @@ body {
     padding: 30px;
 }
 
-/*Contenedor principal del juego*/
+/*Contenedor principal*/
 .game-container {
     width: 100%;
     max-width: 750px;
@@ -31,10 +30,11 @@ body {
     border: 2px solid var(--turquesa);
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 0 15px rgba(84, 240, 223, 0.2), 0 0 35px rgba(84, 240, 223, 0.1);
+    box-shadow: 0 0 15px rgba(84, 240, 223, 0.2),
+                0 0 35px rgba(84, 240, 223, 0.1);
 }
 
-/*Titulo*/
+/*Título*/
 .game-header {
     text-align: center;
     margin-bottom: 25px;
@@ -48,13 +48,7 @@ body {
     text-shadow: 0 0 15px rgba(217, 255, 67, 0.4);
 }
 
-.game-header p {
-    color: var(--lavanda);
-    margin-top: 8px;
-    font-size: 1rem;
-}
-
-/*Info del juego*/
+/*Información del juego*/
 .game-info {
     display: flex;
     justify-content: center;
@@ -72,22 +66,27 @@ body {
     padding: 15px;
     text-align: center;
 }
+
 .score h3,
 .mines h3 {
     color: var(--lavanda);
     font-size: 0.9rem;
     margin-bottom: 8px;
 }
+
 .score span {
     color: var(--lima);
     font-size: 1.8rem;
     font-weight: bold;
 }
+
 .mines span {
     color: var(--coral);
     font-size: 1.8rem;
     font-weight: bold;
 }
+
+/*Tablero*/
 .board-container {
     display: flex;
     justify-content: center;
@@ -96,18 +95,21 @@ body {
     border: 2px solid var(--turquesa);
     border-radius: 15px;
 }
+
 .game-board {
     width: 100%;
     max-width: 500px;
     display: grid;
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(15, 1fr);
+    grid-template-columns: repeat(15, minmax(0, 1fr));
+    grid-template-rows: repeat(15, minmax(0, 1fr));
     aspect-ratio: 1 / 1;
     gap: 3px;
 }
 
 /*Casillas*/
 .cell {
+    min-width: 0;
+    min-height: 0;
     background-color: var(--gris-lavanda);
     border-radius: 3px;
     display: flex;
@@ -115,6 +117,7 @@ body {
     align-items: center;
     transition: background-color 0.15s ease;
 }
+
 .cell:hover {
     background-color: var(--lavanda);
 }
@@ -137,17 +140,39 @@ body {
 /*Minas*/
 .mine {
     background-color: var(--coral);
+    color: var(--morado-oscuro);
+    font-size: 1rem;
+    font-weight: bold;
     border: 2px solid var(--blanco-puro);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--coral);
 }
 
-/*Comida del snake*/
+/*Comida*/
 .food {
     background-color: var(--lima);
     border: 2px solid var(--morado);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--lima);
+}
+
+/*Evitar que el hover cambie el aspecto de los elementos*/
+.cell.mine:hover {
+    background-color: var(--coral);
+    border-color: var(--blanco-puro);
+    box-shadow: 0 0 10px var(--coral);
+}
+
+.cell.food:hover {
+    background-color: var(--lima);
+}
+
+.cell.snake:hover {
+    background-color: var(--lima);
+}
+
+.cell.snake-head:hover {
+    background-color: var(--turquesa);
 }
 
 /*Controles*/
@@ -167,19 +192,23 @@ button {
     cursor: pointer;
     transition: 0.2s ease;
 }
+
 #startBtn {
     background-color: var(--lima);
     color: var(--morado-oscuro);
 }
+
 #restartBtn {
     background-color: var(--turquesa);
     color: var(--morado-oscuro);
 }
+
 button:hover {
     transform: translateY(-3px);
     filter: brightness(1.1);
     box-shadow: 0 0 15px rgba(84, 240, 223, 0.35);
 }
+
 button:active {
     transform: scale(0.96);
 }
@@ -189,11 +218,13 @@ button:active {
     text-align: center;
     margin-top: 25px;
 }
+
 .game-message h2 {
     color: var(--coral);
     font-size: 1.8rem;
     margin-bottom: 10px;
 }
+
 .game-message p {
     color: var(--lavanda);
     font-size: 1rem;
@@ -202,5 +233,18 @@ button:active {
 /*Explosion*/
 .explosion {
     background-color: var(--coral);
+    border: 2px solid var(--blanco-puro);
     box-shadow: 0 0 20px var(--coral);
+    animation: explotar 0.3s infinite alternate;
+}
+
+@keyframes explotar {
+    from {
+        transform: scale(0.8);
+        box-shadow: 0 0 5px var(--coral);
+    }
+    to {
+        transform: scale(1);
+        box-shadow: 0 0 25px var(--coral);
+    }
 }
