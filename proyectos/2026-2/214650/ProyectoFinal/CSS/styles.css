@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos generales de toda la página */
+body {
+    font-family: system-ui, sans-serif;
+    background-color: #E3D9F5;
+    color: #211044;
+    min-height: 100vh;
+
+    /* Centramos todo el contenido de la página */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTENEDOR PRINCIPAL*/
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 25px;
+    width: 100%;
+}
+
+/* TÍTULO PRINCIPAL */
+h1 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #211044;
+    text-align: center;
+}
+
+/* CANVAS*/
+canvas {
+    display: block;
+    background-color: #FFFFFF;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(33, 16, 68, 0.15);
+}
+
+/* MENÚ DE ACCIONES*/
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    background-color: #32185C;
+    padding: 20px 25px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(33, 16, 68, 0.15);
+}
+
+/* Título del menú. */
+.acciones h2 {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: #F8FAFC;
+    text-align: center;
+}
+
+/* BOTONES */
+button {
+    background-color: #D9FF43;
+    color: #211044;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    /* Suaviza los cambios de apariencia */
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #54F0DF;
+    transform: translateY(-2px);
+}
+
+/* Efecto cuando se presiona el botón */
+button:active {
+    transform: scale(0.96);
+}

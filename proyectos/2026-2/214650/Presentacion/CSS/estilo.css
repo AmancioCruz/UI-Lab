@@ -1,0 +1,586 @@
+
+/* =====================================================
+   1. CONFIGURACIÓN GENERAL
+   ===================================================== */
+
+:root {
+    --fondo-pagina: var(--gris-azulado);
+    --texto-pagina: var(--morado-oscuro);
+
+    --fondo-cabecera: var(--blanco-puro);
+    --fondo-tarjeta: var(--blanco-puro);
+
+    --fondo-portada: var(--morado-oscuro);
+    --fondo-portada-claro: var(--morado);
+    --texto-portada: var(--blanco);
+
+    --borde: var(--gris-lavanda);
+    --acento: var(--lima);
+
+    --ancho-contenido: 72rem;
+    --margen-lateral: clamp(1rem, 4vw, 3rem);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+body {
+    background-color: var(--fondo-pagina);
+    color: var(--texto-pagina);
+    font-family: system-ui, sans-serif;
+}
+
+.contenedor {
+    width: min(100% - 2 * var(--margen-lateral),
+    var(--ancho-contenido));
+    margin-inline: auto;
+}
+
+
+/* =====================================================
+   2. CABECERA Y NAVEGACIÓN
+   ===================================================== */
+
+.cabecera {
+    background-color: var(--fondo-cabecera);
+    border-bottom: 1px solid var(--borde);
+}
+
+.cabecera .contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-block: 1rem;
+}
+
+.contenedor-logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    text-decoration: none;
+}
+
+.logo-punto {
+    color: var(--morado);
+}
+
+.barra-navegacion ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.2rem;
+    list-style: none;
+}
+
+.barra-navegacion a {
+    display: inline-block;
+    padding-block: 0.4rem;
+    border-bottom: 3px solid transparent;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.barra-navegacion a:hover {
+    border-color: var(--acento);
+}
+
+
+/* =====================================================
+   3. PORTADA
+   ===================================================== */
+
+.portada {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+    align-items: center;
+    gap: 2rem;
+
+    margin-block: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 5vw, 4rem);
+
+    border-radius: 1.5rem;
+    background: linear-gradient(
+        125deg,
+        var(--fondo-portada-claro),
+        var(--fondo-portada)
+    );
+
+    color: var(--texto-portada);
+    overflow: hidden;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    background-color: var(--lima);
+    color: var(--morado-oscuro);
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+}
+
+.portada h1 {
+    max-width: 9ch;
+    margin-block-start: 1.2rem;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+}
+
+.portada h1 span {
+    color: var(--lima);
+}
+
+.portada-contenido > p {
+    max-width: 32ch;
+    margin-block-start: 1rem;
+    color: var(--lavanda);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+}
+
+.datos-alumna {
+    margin-block-start: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.boton-portada {
+    display: inline-block;
+    margin-block-start: 1.5rem;
+    padding: 0.85rem 1.3rem;
+    border-radius: 0.7rem;
+    background-color: var(--lima);
+    color: var(--morado-oscuro);
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.boton-portada:hover {
+    background-color: var(--turquesa);
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   4. ILUSTRACIÓN DECORATIVA DE LA PORTADA
+   ===================================================== */
+
+.ilustracion-cielo {
+    position: relative;
+    width: 100%;
+    max-width: 20rem;
+    aspect-ratio: 1;
+    justify-self: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    background: linear-gradient(
+        145deg,
+        #54F0DF,
+        #32185C 65%,
+        #211044
+    );
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.sol {
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 38%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #D9FF43;
+    box-shadow: 0 0 35px rgba(217,255,67,0.65);
+}
+
+.luna {
+    position: absolute;
+    right: 15%;
+    bottom: 22%;
+    width: 27%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #F8FAFC;
+    box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+
+.luna::after {
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: 30%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #32185C;
+}
+
+.nube {
+    position: absolute;
+    width: 32%;
+    height: 12%;
+    border-radius: 2rem;
+    background: var(--blanco-puro);
+}
+
+.nube::before,
+.nube::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.nube::before {
+    left: 15%;
+    width: 48%;
+    height: 180%;
+}
+
+.nube::after {
+    right: 10%;
+    width: 42%;
+    height: 140%;
+}
+
+.nube-uno {
+    left: 12%;
+    bottom: 25%;
+}
+
+.nube-dos {
+    right: 5%;
+    top: 30%;
+    transform: scale(0.7);
+}
+
+.estrella {
+    position: absolute;
+    color: var(--blanco-puro);
+    font-size: 1.8rem;
+}
+
+.estrella-uno {
+    top: 12%;
+    right: 20%;
+}
+
+.estrella-dos {
+    bottom: 12%;
+    left: 28%;
+}
+
+
+/* =====================================================
+   5. SECCIONES
+   ===================================================== */
+
+.seccion {
+    padding-block-start: clamp(3rem, 6vw, 5rem);
+    scroll-margin-top: 2rem;
+}
+
+.encabezado-seccion {
+    margin-block-end: 1.5rem;
+}
+
+.numero-seccion {
+    color: var(--morado);
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+}
+
+.encabezado-seccion h2 {
+    margin-block-start: 0.4rem;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 850;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.tarjeta,
+.tarjeta-concepto,
+.bloque-texto {
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid var(--borde);
+    border-radius: 1rem;
+    background-color: var(--fondo-tarjeta);
+}
+
+.tarjeta-concepto {
+    border-left: 6px solid var(--lima);
+}
+
+.tarjeta-concepto p,
+.bloque-texto p,
+.tarjeta p {
+    line-height: 1.75;
+}
+
+.bloque-texto h3,
+.tarjeta h3 {
+    margin-block-end: 0.7rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.bloque-texto p + p {
+    margin-block-start: 1rem;
+}
+
+
+/* =====================================================
+   6. TARJETAS DE ESCENAS Y MECÁNICAS
+   ===================================================== */
+
+.rejilla-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.tarjeta {
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    border-color: var(--morado);
+}
+
+.icono-tarjeta {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-block-end: 1rem;
+    border-radius: 0.8rem;
+    background-color: var(--lavanda);
+    color: var(--morado-oscuro);
+    font-size: 1.8rem;
+}
+
+#animacion .bloque-texto {
+    margin-block-start: 1rem;
+}
+
+.dos-columnas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+
+/* =====================================================
+   7. ESTILO VISUAL Y ASSETS
+   ===================================================== */
+
+.subtitulo {
+    margin-block: 1.5rem 1rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.muestra-asset {
+    display: grid;
+    place-items: center;
+    height: 8rem;
+    margin-block-end: 1rem;
+    border-radius: 0.8rem;
+    font-size: 3.5rem;
+}
+
+.muestra-sol {
+    background: #FFF3BD;
+    color: #EAAE23;
+}
+
+.muestra-luna {
+    background: #211044;
+    color: #F8FAFC;
+}
+
+.muestra-nube {
+    background: #D9F5F3;
+    color: #32185C;
+}
+
+.muestra-cielo {
+    background: linear-gradient(135deg, #54F0DF, #32185C);
+    color: #FFFFFF;
+}
+
+.nota-assets {
+    margin-block-start: 1rem;
+    color: var(--morado);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   8. FICHA TÉCNICA
+   ===================================================== */
+
+.ficha-tecnica {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.dato-ficha {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--borde);
+    border-radius: 0.8rem;
+    background-color: var(--blanco-puro);
+}
+
+.dato-ficha span {
+    color: var(--morado);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.dato-ficha strong {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   9. TECNOLOGÍA
+   ===================================================== */
+
+.rejilla-tecnologia {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.tecnologia {
+    padding: 1.2rem;
+    border-radius: 0.9rem;
+    background-color: var(--morado-oscuro);
+    color: var(--blanco);
+}
+
+.tecnologia strong {
+    display: block;
+    margin-block-end: 0.6rem;
+    color: var(--lima);
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.tecnologia p {
+    color: var(--lavanda);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   10. PIE DE PÁGINA
+   ===================================================== */
+
+.pie {
+    margin-block-start: 5rem;
+    padding-block: 2rem;
+    background-color: var(--morado-oscuro);
+    color: var(--blanco);
+    text-align: center;
+}
+
+.pie p {
+    font-size: 1.2rem;
+    font-weight: 850;
+}
+
+.pie span {
+    display: block;
+    margin-block: 0.4rem 1rem;
+    color: var(--lavanda);
+    font-size: 0.85rem;
+}
+
+.pie a {
+    color: var(--lima);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pie a:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   11. DISEÑO RESPONSIVO
+   ===================================================== */
+
+/* Tabletas */
+@media (max-width: 48rem) {
+
+    .portada {
+        grid-template-columns: 1fr;
+    }
+
+    .ilustracion-cielo {
+        width: min(70%, 17rem);
+    }
+
+    .rejilla-tarjetas,
+    .rejilla-tecnologia {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .barra-navegacion ul {
+        gap: 0.4rem 0.8rem;
+    }
+}
+
+/* Celulares */
+@media (max-width: 36rem) {
+
+    .cabecera .contenedor {
+        justify-content: center;
+    }
+
+    .contenedor-logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .barra-navegacion ul {
+        justify-content: center;
+    }
+
+    .portada {
+        text-align: center;
+    }
+
+    .portada h1,
+    .portada-contenido > p {
+        margin-inline: auto;
+    }
+
+    .rejilla-tarjetas,
+    .dos-columnas,
+    .ficha-tecnica,
+    .rejilla-tecnologia {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,17 @@
+:root {
+    /* Colores principales */
+    --morado-oscuro: #211044;
+    --morado: #32185C;
+    --lavanda: #E3D9F5;
+
+    /* Colores de acento */
+    --lima: #D9FF43;
+    --turquesa: #54F0DF;
+    --coral: #FF784F;
+
+    /* Colores neutros */
+    --blanco: #F8FAFC;
+    --blanco-puro: #FFFFFF;
+    --gris-azulado: #F2F7FA;
+    --gris-lavanda: #D3CDE3;
+}
