@@ -1,104 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luigi´s Poker Night | Información del juego</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/estilo.css">
+    <title>Luigi´s Poker Night| Proyecto</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/colores.css">
+    <link rel="stylesheet" href="CSS/estilo.css">
 </head>
+
 <body>
-    <main class="presentation-container">
-        <!-- Encabezado principal -->
-        <header class="presentation-header">
-            <h1>Luigi´s Poker Night</h1>
-        </header>
-        <!-- Concepto del juego -->
-        <section class="info-section">
-            <h2>01. Concepto</h2>
-            <p>
-                Este es el popular minijuego picture poker del juego "new supermario bros. DS" en el cual tienes que ganarle a luigi consiguiendo
-                una mejor mano que la suya, en este juego podras seleccionar las cartas que quieras mantener en tu mano, luigi cambiara las cartas que no
-                seleccionaste para luego comparar su mano con la tuya para ver cual es la mas alta  
-            </p>
-        </section>
-        <!-- Controles -->
-        <section class="info-section">
-            <h2>02. Controles</h2>
-            <p>
-                En este juego solo sera necesario tu dedo si estas en celular, o el mouse si estas en computadora
-            </p>
-            </div>
-        </section>
-        <!-- Mecánicas -->
-        <section class="info-section">
-            <h2>03. Mecánicas</h2>
-            <p>
-                Selecciona cuanto quieres apostar desde los botones de aumentar o disminuir que se encuentran a mano izuierda, una vez te hayas decicido
-                precionas el boton de "APOSTAR" para comenzar el juego, luigi repartira las cartas y es cuando te toca a ti seleccionar las cartas que no
-                te son utiles, tratando de formar la mano mas fuerte que puedas, al comparar las cartas, ganaras una suma de monedas dependiendo de la mano que
-                hayas jugado y por supuesto, que hayas ganado
-            </p>
-            <ul>
-                <li>Aumenta o disminuye la apuesta</li>
-                <li>Selecciona las cartas que quieras mantener en tu mano(STAND)</li>
-                <li>Compara tu mano con la de luigi</li>
-                <li>Gana o pierde monedas</li>
-            </ul>
-        </section>
-        <!-- Reglas -->
-        <section class="info-section">
-            <h2>04. Reglas</h2>
-            <p>"DIVIERTETE</p>
-        </section>
-        <!-- Funcionamiento -->
-        <section class="info-section">
-            <h2>05. Funcionamiento</h2>
-            <p>
-                El programa utiliza un randomizador para las cartas, teniendo 6 opciones, nube, hongo, fuego, estrella hombre y mujer, reparte 5 cartas para
-                el jugador y 5 cartas para el cpu, en la fase de juego las cartas que estan en un estado falso se mantienen abajo, y en estado verdadero se mantienen
-                dentro de la mano, el programa cambia las cartas que estan en estado false por otras utilizando el mismo randomizador para revelar las cartas del cpu,
-                se guia por un controlador de rango, pasando de mano mas alta a 5 cartas del mismo palo, la computadora hace la comparativa, los simbolos tambien con un rango en caso de 
-                ambos tener carta mas alta, o doble par, hace la comparativa y dependiendo de si perdiste, te quita las monedas que apostaste, o si ganaste, en caso de haber ganado
-                la computadora revisa el multiplicador de la mano jugada para multiplicar tu apuesta.
-            </p>
-        </section>
-        <!-- Estilo visual -->
-        <section class="info-section">
-            <h2>06. Estilo visual</h2>
-            <p>
-                EL estilo se mantuvo lo mas sencillo posible conservando las dos pantallas para que el diseño de la pagina adaptativo
-            </p>
-        </section>
-        <!-- Ficha técnica -->
-        <section class="info-section technical-section">
-            <h2>07. Ficha técnica</h2>
-            <div class="technical-data">
-                <p>
-                    <strong>Nombre:</strong>
-                    Braulio Cárdenas Molina
-                </p>
-                <p>
-                    <strong>Matrícula:</strong>
-                    239257
-                </p>
-                <p>
-                    <strong>Tecnología:</strong>
-                    HTML, JavaScript y CSS
-                </p>
-                <p>
-                    <strong>Proyecto:</strong>
-                    Luigi´s Picture Poker
-                </p>
-            </div>
-        </section>
-        <!-- Botón para entrar al juego -->
-        <footer class="presentation-footer">
-            <p>¿Estás listo para iniciar el entrenamiento?</p>
-            <a href="index.html" class="play-button">
-                INICIAR JUEGO
+
+    <!-- CABECERA Y NAVEGACIÓN -->
+    <header class="cabecera">
+        <div class="contenedor">
+            <a href="#inicio" class="contenedor-logo">
+                Poker de Luigi<span class="logo-punto">.</span>
             </a>
-        </footer>
+
+            <nav class="barra-navegacion">
+                <ul>
+                    <li><a href="#concepto">Concepto</a></li>
+                    <li><a href="#animacion">Animación</a></li>
+                    <li><a href="#visual">Estilo visual</a></li>
+                    <li><a href="#tecnologia">Tecnología</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- PORTADA -->
+        <section class="portada contenedor" id="inicio">
+
+            <div class="portada-contenido">
+                <span class="etiqueta">Interfaz Dinamica</span>
+
+                <h1>Luigi´s Poker Night<span>.</span></h1>
+
+                <p>
+                    El popular minijuego de mario para la nintendo DS.
+                </p>
+
+                <div class="datos-alumna">
+                    <p><strong>Alumno:</strong> Braulio Cárdenas Molina</p>
+                    <p><strong>Matrícula:</strong> 239257</p>
+                </div>
+
+                <a href="../Poker/index.html" class="boton-portada">
+                    Presiona para Jugar
+                </a>
+            </div>
+
+        </section>
+
+        <!-- CONCEPTO -->
+        <section class="seccion contenedor" id="concepto">
+
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">01 / IDEA PRINCIPAL</span>
+                <h2>Concepto</h2>
+            </div>
+
+            <div class="tarjeta-concepto">
+                <p>
+                    En este juego juegas contra Luigi en una partida amistosa de poker, luigi repartira las cartas
+                    entre el jugador y el, para que el jugador pueda descartar las cartas que no le benefician, y asi
+                    formar una mejor mano y ganar contra el
+                </p>
+            </div>
+
+        </section>
+
+        <!-- CONTROLES Y MECÁNICAS -->
+        <section class="seccion contenedor" id="animacion">
+
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">02 / INTERACCIÓN</span>
+                <h2>Controles y mecánicas</h2>
+            </div>
+
+
+            <div class="bloque-texto">
+                <h3>Mecánicas del Juego</h3>
+                <p>
+                    El juego es muy sencillo, con los botones de mas y menos, aumenta o disminuye la cantidad de monedas
+                    que quieras apostar
+                    una vez estes listo, es hora de presionar el boton apostar para comenzar el juego, luigi reparte dos
+                    manos, la tuya y la suya
+                    en la fase "STAND" el jugador seleccionara las cartas que le benifician para descartar las que no le
+                    sean utiles,
+                    ya decidido, el jugador presiona el boton una vez mas para que luigi compara ambas manos y cante el
+                    ganador.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- REGLAS Y FUNCIONAMIENTO -->
+        <section class="seccion contenedor" id="funcionamiento">
+
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">03 / DESARROLLO</span>
+                <h2>Reglas y funcionamiento</h2>
+            </div>
+
+            <div class="dos-columnas">
+
+                <article class="tarjeta">
+                    <h3>Reglas del Juego</h3>
+                    <p>
+                        "DIVIERTETEEEEEEEE"
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <h3>Funcionamiento</h3>
+                    <p>
+                        El programa utiliza un randomizador para la seleccion de las 10 cartas en la mesa
+                        al presionar los botones aumentar y disminuir el contador de tus monedas disminuira y el contador
+                        de la apuesta aumentara, al presionar apostar, las cartas se muestran sobre la mesa, las cartas que 
+                        sostiene el jugador estan en un estado false, al ser seleccionadas estas pasan a true, haciendo que el programa
+                        sepa que las cartas con ese estado deben mantenerse en la mano, despues de que se hayan cambiado, la computadora hará dos
+                        comparaciones, primero revisara las cartas de la computadora, revisando una por una, la computadora lee el rango de la mano (carta mayor, par, doble par, tercia, full, escalera, 4 del mismo y 5 del mismo)
+                        despues de hacer esta comparacion en ambas manos, si ambas estan en el mismo rango, revisa los iconos de cada uno 
+                        que al igual tiene su propio rango, el que este mas alto en ambas comparaciones es el ganador, y si el jugador gana 
+                        su apuesta se multiplica dependiendo del multiplicador de la mano, sumando las monedas a tu contador
+                    </p>
+                    <p>
+                        Los elementos gráficos se generan mediante
+                        Canvas 2D, utilizando figuras geométricas,
+                        degradados, transparencias y trazos. Para producir
+                        los movimientos y transiciones se utiliza
+                        <code>requestAnimationFrame()</code>, que permite
+                        actualizar continuamente los dibujos y conseguir
+                        animaciones fluidas.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ESTILO VISUAL Y ASSETS -->
+        <section class="seccion contenedor" id="visual">
+
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">04 / IDENTIDAD GRÁFICA</span>
+                <h2>Estilo visual y assets</h2>
+            </div>
+
+            <div class="bloque-texto">
+                <p>
+                    EL proyecto mantiene un estilo sencillo para que este se adapte a ambos formatos, computadora y
+                    movil
+                    los colores exteriores son oscuros para evitar dolores de cabeza tras extensas horas de juego
+                </p>
+            </div>
+
+            <h3 class="subtitulo">Elementos gráficos</h3>
+            <p class="bloque-texto">
+                Los svg se manejaron desde illustrator, los emojis son del sistema y los colores se inspiraron en el juego original
+                y las mesas de poker
+            </p>
+
+        </section>
+
+        <!-- FICHA TÉCNICA -->
+        <section class="seccion contenedor" id="ficha">
+
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">05 / INFORMACIÓN GENERAL</span>
+                <h2>Ficha técnica</h2>
+            </div>
+
+            <div class="ficha-tecnica">
+
+                <div class="dato-ficha">
+                    <span>Nombre del Proyecto</span>
+                    <strong>Luigi´s Poker Night</strong>
+                </div>
+
+                <div class="dato-ficha">
+                    <span>Autor</span>
+                    <strong>Braulio Cárdenas Molina</strong>
+                </div>
+
+                <div class="dato-ficha">
+                    <span>Matrícula</span>
+                    <strong>239257</strong>
+                </div>
+
+                <div class="dato-ficha">
+                    <span>Categoría</span>
+                    <strong>Juego interactivo</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TECNOLOGÍA -->
+        <section class="seccion contenedor" id="tecnologia">
+
+            <div class="encabezado-seccion">
+                <span class="numero-seccion">06 / HERRAMIENTAS</span>
+                <h2>Tecnología</h2>
+            </div>
+
+            <div class="rejilla-tecnologia">
+
+                <article class="tecnologia">
+                    <strong>HTML5</strong>
+                    <p>
+                        Construcción de la estructura de la página.
+                    </p>
+                </article>
+
+                <article class="tecnologia">
+                    <strong>CSS3</strong>
+                    <p>
+                        Diseño de la interfaz y estilos visuales.
+                    </p>
+                </article>
+
+                <article class="tecnologia">
+                    <strong>JavaScript</strong>
+                    <p>
+                        Programación de interacciones.
+                    </p>
+                </article>
+            </div>
+
+        </section>
+
     </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie">
+        <div class="contenedor">
+            <p>Luigi´s Poker Night</p>
+            <span>Braulio Cárdenas Molina</span>
+            <a href="#inicio">Volver al inicio ↑</a>
+        </div>
+    </footer>
+
 </body>
+
 </html>
