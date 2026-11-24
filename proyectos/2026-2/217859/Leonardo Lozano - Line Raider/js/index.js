@@ -1,372 +1,228 @@
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
-// --- ESTADO Y CONFIGURACIÓN ---
-let modo = "dibujar"; // "dibujar" o "play"
-const lineas = [];     // Segmentos de pista: { x1, y1, x2, y2 }
-let dibujandoLinea = false;
+let modo = "dibujar"; // "dibujar"
+const lineas = [];
+let dibujando = false;
 let ultimoPunto = { x: 0, y: 0 };
 
-const jugador = {
-    x: 80,
-    y: 80,
-    vx: 0,
-    vy: 0,
-    radio: 18,      // Radio de colisión del esquiador
-    tamanoVisual: 52, // Tamaño en píxeles al dibujar el sprite
-    angulo: 0,
-    enSuelo: false
-};
-
+const jugador = { x: 80, y: 120, vx: 0, vy: 0, radio: 18, tamano: 52, angulo: 0 };
 const gravedad = 0.25;
 const friccion = 0.99;
-const distanciaMinimaSegmento = 8;
 
-// --- NIVELES Y META ---
-let nivelActual = 1;
-const meta = {
-    x: 800,
-    y: 400,
-    radio: 22,
-    alcanzada: false
+let nivel = 1;
+let estrellas = []; // Lista de estrellas del nivel actual
+
+const niveles = {
+    1: [
+        { rx: 0.85, ry: 0.78 }  // Estrella 2: Abajo (bajada de la montaña)
+    ],
+    2: [
+        { rx: 0.35, ry: 0.75 }, // Estrella 1: Valle izquierdo para tomar impulso
+        { rx: 0.82, ry: 0.45 }  // Estrella 2: Cima alta a la derecha
+    ],
+    3: [
+        { rx: 0.65, ry: 0.22 }, // Estrella 1: Montaña alta a la derecha
+        { rx: 0.20, ry: 0.82 }  // Estrella 2: Retorno abajo a la izquierda
+    ]
 };
 
-const posicionesMetasRelativas = {
-    1: { rx: 0.85, ry: 0.72 },
-    2: { rx: 0.85, ry: 0.28 },
-    3: { rx: 0.22, ry: 0.82 }
-};
+// --- ASSETS 
+const fondo = new Image();
+fondo.src = "recursos/fondo.jpg";
 
-function actualizarPosicionMetaSegunCanvas() {
-    const rel = posicionesMetasRelativas[nivelActual] || { rx: 0.85, ry: 0.72 };
-    meta.x = canvas.width * rel.rx;
-    meta.y = canvas.height * rel.ry;
-}
+const esquiadorImg = new Image();
+esquiadorImg.src = "recursos/equiador.jpg";
+let spriteEsquiador = null;
 
-function reiniciarJugador() {
+esquiadorImg.addEventListener("load", () => {
+    const aux = document.createElement("canvas");
+    aux.width = esquiadorImg.width;
+    aux.height = esquiadorImg.height;
+    const auxCtx = aux.getContext("2d");
+    auxCtx.drawImage(esquiadorImg, 0, 0);
+
+    const data = auxCtx.getImageData(0, 0, aux.width, aux.height);
+    for (let i = 0; i < data.data.length; i += 4) {
+        if (data.data[i] > 240 && data.data[i + 1] > 240 && data.data[i + 2] > 240) {
+            data.data[i + 3] = 0;
+        }
+    }
+    auxCtx.putImageData(data, 0, 0);
+    spriteEsquiador = aux;
+    redibujar();
+});
+
+fondo.addEventListener("load", redibujar);
+
+// --- ESTADO Y NIVELES ---
+function resetearJugador() {
     jugador.x = 80;
-    jugador.y = 80;
+    jugador.y = 120;
     jugador.vx = 0;
     jugador.vy = 0;
     jugador.angulo = 0;
-    jugador.enSuelo = false;
 }
 
-function establecerModo(nuevoModo) {
+function cambiarModo(nuevoModo) {
     modo = nuevoModo;
-    const btnDibujar = document.querySelector("#btn-dibujar");
-    const btnPlay = document.querySelector("#btn-play");
+    document.querySelector("#btn-dibujar")?.classList.toggle("activo", modo === "dibujar");
+    document.querySelector("#btn-play")?.classList.toggle("activo", modo === "play");
+}
 
-    if (btnDibujar && btnPlay) {
-        btnDibujar.classList.toggle("activo", modo === "dibujar");
-        btnPlay.classList.toggle("activo", modo === "play");
+function ubicarEstrellas() {
+    for (const est of estrellas) {
+        est.x = canvas.width * est.rx;
+        est.y = canvas.height * est.ry;
     }
 }
 
-function cargarNivel(numNivel) {
-    nivelActual = numNivel;
-    meta.alcanzada = false;
-    actualizarPosicionMetaSegunCanvas();
-
-    const textoNivel = document.querySelector("#nivel-texto");
-    if (textoNivel) {
-        textoNivel.textContent = nivelActual;
-    }
-
+function cargarNivel(num) {
+    nivel = num;
     lineas.length = 0;
-    dibujandoLinea = false;
-    reiniciarJugador();
-    establecerModo("dibujar");
-    redibujarTodo();
+    dibujando = false;
+    resetearJugador();
+    cambiarModo("dibujar");
+
+    // Crear las estrellas del nivel
+    const config = niveles[nivel] || niveles[1];
+    estrellas = config.map(pos => ({
+        rx: pos.rx,
+        ry: pos.ry,
+        x: 0,
+        y: 0,
+        radio: 22,
+        recogida: false
+    }));
+
+    ubicarEstrellas();
+
+    const txtNivel = document.querySelector("#nivel-texto");
+    if (txtNivel) txtNivel.textContent = nivel;
+    redibujar();
 }
 
-// --- FONDO DEL PIZARRON ---
-const imagenFondo = new Image();
-imagenFondo.src = "recursos/fondo.jpg";
-let fondoCargado = false;
-
-imagenFondo.addEventListener("load", () => {
-    fondoCargado = true;
-    redibujarTodo();
-});
-
-function dibujarFondoCover() {
-    if (!fondoCargado || canvas.width === 0 || canvas.height === 0) return;
-
-    const canvasRatio = canvas.width / canvas.height;
-    const imgRatio = imagenFondo.width / imagenFondo.height;
-
-    let drawWidth, drawHeight, offsetX, offsetY;
-
-    if (canvasRatio > imgRatio) {
-        drawWidth = canvas.width;
-        drawHeight = canvas.width / imgRatio;
-        offsetX = 0;
-        offsetY = (canvas.height - drawHeight) / 2;
-    } else {
-        drawHeight = canvas.height;
-        drawWidth = canvas.height * imgRatio;
-        offsetX = (canvas.width - drawWidth) / 2;
-        offsetY = 0;
-    }
-
-    ctx.drawImage(imagenFondo, offsetX, offsetY, drawWidth, drawHeight);
-}
-
-// --- PERSONAJE ESQUIADOR---
-const imagenEsquiadorOriginal = new Image();
-imagenEsquiadorOriginal.src = "recursos/equiador.jpg";
-let spriteEsquiadorListo = null;
-
-imagenEsquiadorOriginal.addEventListener("load", () => {
-    const tempCanvas = document.createElement("canvas");
-    tempCanvas.width = imagenEsquiadorOriginal.width;
-    tempCanvas.height = imagenEsquiadorOriginal.height;
-    const tempCtx = tempCanvas.getContext("2d");
-
-    tempCtx.drawImage(imagenEsquiadorOriginal, 0, 0);
-    const imgData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-    const data = imgData.data;
-
-    for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        if (r > 240 && g > 240 && b > 240) {
-            data[i + 3] = 0;
-        }
-    }
-
-    tempCtx.putImageData(imgData, 0, 0);
-    spriteEsquiadorListo = tempCanvas;
-    redibujarTodo();
-});
-
-function dibujarJugador() {
-    ctx.save();
-    ctx.translate(jugador.x, jugador.y);
-    ctx.rotate(jugador.angulo);
-
-    // Voltear horizontalmente si va hacia la izquierda
-    if (jugador.vx < -0.3) {
-        ctx.scale(-1, 1);
-    }
-
-    if (spriteEsquiadorListo) {
-        const mitad = jugador.tamanoVisual / 2;
-        ctx.drawImage(
-            spriteEsquiadorListo,
-            -mitad,
-            -mitad,
-            jugador.tamanoVisual,
-            jugador.tamanoVisual
-        );
-    } else {
-        // Respaldo mientras carga la imagen
-        ctx.fillStyle = "#ff4d6d";
-        ctx.beginPath();
-        ctx.arc(0, 0, jugador.radio, 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    ctx.restore();
-}
-
-// --- TAMAÑO DEL PIZARRON ---
-function ajustarTamanoPizarron() {
+function ajustarTamano() {
     const marco = canvas.parentElement;
     if (!marco) return;
-
-    const nuevoAncho = marco.clientWidth;
-    const nuevoAlto = marco.clientHeight;
-
-    if (canvas.width > 0 && canvas.height > 0 && (nuevoAncho !== canvas.width || nuevoAlto !== canvas.height)) {
-        const escalaX = nuevoAncho / canvas.width;
-        const escalaY = nuevoAlto / canvas.height;
-
-        for (const l of lineas) {
-            l.x1 *= escalaX;
-            l.y1 *= escalaY;
-            l.x2 *= escalaX;
-            l.y2 *= escalaY;
-        }
-
-        jugador.x *= escalaX;
-        jugador.y *= escalaY;
-        jugador.vx *= escalaX;
-        jugador.vy *= escalaY;
-    }
-
-    canvas.width = nuevoAncho;
-    canvas.height = nuevoAlto;
-
-    actualizarPosicionMetaSegunCanvas();
-    redibujarTodo();
+    canvas.width = marco.clientWidth;
+    canvas.height = marco.clientHeight;
+    ubicarEstrellas();
+    redibujar();
 }
 
-window.addEventListener("resize", ajustarTamanoPizarron);
+window.addEventListener("resize", ajustarTamano);
 
-// --- EVENTOS DE PUNTERO (MOUSE + TÁCTIL) ---
-function obtenerCoordenadas(e) {
+// --- ENTRADA (MOUSE Y TÁCTIL) ---
+function coords(e) {
     const rect = canvas.getBoundingClientRect();
-    const x = Math.max(0, Math.min(canvas.width, e.clientX - rect.left));
-    const y = Math.max(0, Math.min(canvas.height, e.clientY - rect.top));
-    return { x, y };
+    return {
+        x: Math.max(0, Math.min(canvas.width, e.clientX - rect.left)),
+        y: Math.max(0, Math.min(canvas.height, e.clientY - rect.top))
+    };
 }
 
 canvas.addEventListener("pointerdown", (e) => {
-    if (modo !== "dibujar") return;
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-
+    if (modo !== "dibujar" || (e.pointerType === "mouse" && e.button !== 0)) return;
     canvas.setPointerCapture(e.pointerId);
-    dibujandoLinea = true;
-    ultimoPunto = obtenerCoordenadas(e);
+    dibujando = true;
+    ultimoPunto = coords(e);
 });
 
 canvas.addEventListener("pointermove", (e) => {
-    if (modo !== "dibujar" || !dibujandoLinea) return;
-
-    const puntoActual = obtenerCoordenadas(e);
-    const distancia = Math.hypot(
-        puntoActual.x - ultimoPunto.x,
-        puntoActual.y - ultimoPunto.y
-    );
-
-    if (distancia >= distanciaMinimaSegmento) {
-        lineas.push({
-            x1: ultimoPunto.x,
-            y1: ultimoPunto.y,
-            x2: puntoActual.x,
-            y2: puntoActual.y
-        });
-        ultimoPunto = puntoActual;
-        redibujarTodo();
+    if (modo !== "dibujar" || !dibujando) return;
+    const actual = coords(e);
+    if (Math.hypot(actual.x - ultimoPunto.x, actual.y - ultimoPunto.y) >= 8) {
+        lineas.push({ x1: ultimoPunto.x, y1: ultimoPunto.y, x2: actual.x, y2: actual.y });
+        ultimoPunto = actual;
+        redibujar();
     }
 });
 
 canvas.addEventListener("pointerup", (e) => {
-    if (!dibujandoLinea) return;
-
-    dibujandoLinea = false;
-    if (canvas.hasPointerCapture(e.pointerId)) {
-        canvas.releasePointerCapture(e.pointerId);
-    }
-    redibujarTodo();
+    if (!dibujando) return;
+    dibujando = false;
+    if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
 });
 
-canvas.addEventListener("pointercancel", () => {
-    dibujandoLinea = false;
-    redibujarTodo();
-});
-
-// --- CONTROLES DE LA BARRA ---
-document.querySelector("#btn-dibujar")?.addEventListener("click", () => {
-    establecerModo("dibujar");
-});
-
-document.querySelector("#btn-play")?.addEventListener("click", () => {
-    establecerModo("play");
-});
+// --- BOTONES
+document.querySelector("#btn-dibujar")?.addEventListener("click", () => cambiarModo("dibujar"));
+document.querySelector("#btn-play")?.addEventListener("click", () => cambiarModo("play"));
 
 document.querySelector("#btn-reiniciar")?.addEventListener("click", () => {
-    reiniciarJugador();
-    establecerModo("dibujar");
-    redibujarTodo();
+    resetearJugador();
+    for (const est of estrellas) est.recogida = false;
+    cambiarModo("dibujar");
+    redibujar();
 });
 
 document.querySelector("#btn-borrar")?.addEventListener("click", () => {
-    lineas.length = 0;
-    dibujandoLinea = false;
-    meta.alcanzada = false;
-    reiniciarJugador();
-    establecerModo("dibujar");
-    redibujarTodo();
+    cargarNivel(nivel);
 });
 
-// --- FÍSICAS Y COLISIONES ---
+// --- FiSICAS ---
 function actualizarFisicas() {
     if (modo !== "play") return;
 
     jugador.vy += gravedad;
     jugador.x += jugador.vx;
     jugador.y += jugador.vy;
-
     jugador.vx *= friccion;
     jugador.vy *= friccion;
 
-    // Comprobar meta
-    if (!meta.alcanzada) {
-        const distMeta = Math.hypot(jugador.x - meta.x, jugador.y - meta.y);
-        if (distMeta < jugador.radio + meta.radio) {
-            meta.alcanzada = true;
-            establecerModo("dibujar");
-            redibujarTodo();
-
-            setTimeout(() => {
-                if (nivelActual < 3) {
-                    alert(`¡Nivel ${nivelActual} superado! Pasando al nivel ${nivelActual + 1}.`);
-                    cargarNivel(nivelActual + 1);
-                } else {
-                    alert("¡Completaste todos los niveles! Volviendo al nivel 1.");
-                    cargarNivel(1);
-                }
-            }, 80);
-            return;
+    for (const est of estrellas) {
+        if (!est.recogida && Math.hypot(jugador.x - est.x, jugador.y - est.y) < jugador.radio + est.radio) {
+            est.recogida = true;
         }
+    }
+
+    // Si ya recogió TODAS las estrellas del nivel
+    if (estrellas.every(est => est.recogida)) {
+        cambiarModo("dibujar");
+        redibujar();
+        setTimeout(() => {
+            alert(`¡Nivel ${nivel} completado! Recogiste las ${estrellas.length} estrellas.`);
+            cargarNivel(nivel < 3 ? nivel + 1 : 1);
+        }, 100);
+        return;
     }
 
     let enSuelo = false;
 
-    // Colisiones contra segmentos de línea
     for (const l of lineas) {
         const dx = l.x2 - l.x1;
         const dy = l.y2 - l.y1;
-        const longitudSq = dx * dx + dy * dy;
+        const lenSq = dx * dx + dy * dy;
+        if (lenSq === 0) continue;
 
-        if (longitudSq === 0) continue;
-
-        let t = ((jugador.x - l.x1) * dx + (jugador.y - l.y1) * dy) / longitudSq;
-        t = Math.max(0, Math.min(1, t));
-
+        const t = Math.max(0, Math.min(1, ((jugador.x - l.x1) * dx + (jugador.y - l.y1) * dy) / lenSq));
         const cx = l.x1 + t * dx;
         const cy = l.y1 + t * dy;
-
         const distX = jugador.x - cx;
         const distY = jugador.y - cy;
-        const distancia = Math.hypot(distX, distY);
+        const dist = Math.hypot(distX, distY);
 
-        if (distancia < jugador.radio && distancia > 0) {
+        if (dist < jugador.radio && dist > 0) {
             enSuelo = true;
+            jugador.x = cx + (distX / dist) * jugador.radio;
+            jugador.y = cy + (distY / dist) * jugador.radio;
 
-            const nx = distX / distancia;
-            const ny = distY / distancia;
-
-            jugador.x = cx + nx * jugador.radio;
-            jugador.y = cy + ny * jugador.radio;
-
-            const len = Math.hypot(dx, dy);
+            const len = Math.sqrt(lenSq);
             const tx = dx / len;
             const ty = dy / len;
-
             const vTangente = jugador.vx * tx + jugador.vy * ty;
             jugador.vx = vTangente * tx;
             jugador.vy = vTangente * ty;
-
-            // Alinear inclinación con la pendiente de la línea
-            const anguloPendiente = Math.atan2(ty, tx);
-            jugador.angulo = anguloPendiente * 0.6;
+            jugador.angulo = Math.atan2(ty, tx) * 0.6;
         }
     }
 
-    jugador.enSuelo = enSuelo;
-
-    // Si está en el aire, inclinar suavemente según velocidad vertical
-    if (!jugador.enSuelo) {
-        const inclinacionAire = Math.max(-0.5, Math.min(0.6, jugador.vy * 0.04));
-        jugador.angulo += (inclinacionAire - jugador.angulo) * 0.15;
+    if (!enSuelo) {
+        const aire = Math.max(-0.5, Math.min(0.6, jugador.vy * 0.04));
+        jugador.angulo += (aire - jugador.angulo) * 0.15;
     }
 
-    // Límites del pizarrón
+    // Bordes del pizarrón
     if (jugador.y > canvas.height - jugador.radio) {
         jugador.y = canvas.height - jugador.radio;
         jugador.vy = 0;
@@ -383,33 +239,52 @@ function actualizarFisicas() {
     }
 }
 
-// --- RENDERIZADO ---
-function redibujarTodo() {
+// --- TRAZO ---
+function dibujarCirculo(x, y, r, relleno, borde, grosor = 2) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    if (relleno) {
+        ctx.fillStyle = relleno;
+        ctx.fill();
+    }
+    if (borde) {
+        ctx.lineWidth = grosor;
+        ctx.strokeStyle = borde;
+        ctx.stroke();
+    }
+}
+
+function redibujar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // 1. Fondo invernal
-    dibujarFondoCover();
+    if (fondo.complete && fondo.naturalWidth > 0) {
+        const scale = Math.max(canvas.width / fondo.width, canvas.height / fondo.height);
+        const w = fondo.width * scale;
+        const h = fondo.height * scale;
+        ctx.drawImage(fondo, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+    }
 
-    // 2. Meta
-    ctx.fillStyle = meta.alcanzada ? "#4CAF50" : "#FFD700";
-    ctx.beginPath();
-    ctx.arc(meta.x, meta.y, meta.radio, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = "#DAA520";
-    ctx.stroke();
+    // Dibujar las 2 estrellas
+    for (const est of estrellas) {
+        dibujarCirculo(
+            est.x,
+            est.y,
+            est.radio,
+            est.recogida ? "#4CAF50" : "#FFD700",
+            est.recogida ? "#2E7D32" : "#DAA520",
+            3
+        );
+        ctx.fillStyle = est.recogida ? "#FFF" : "#000";
+        ctx.font = "bold 14px sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(est.recogida ? "✓" : "★", est.x, est.y);
+    }
 
-    ctx.fillStyle = "#000";
-    ctx.font = "bold 14px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("★", meta.x, meta.y);
-
-    // 3. Pista dibujada
+    // Lineas
     ctx.strokeStyle = "#111116";
     ctx.lineWidth = 3.5;
     ctx.lineCap = "round";
-
     for (const l of lineas) {
         ctx.beginPath();
         ctx.moveTo(l.x1, l.y1);
@@ -417,19 +292,26 @@ function redibujarTodo() {
         ctx.stroke();
     }
 
-    // 4. Jugador (esquiador)
-    dibujarJugador();
+    // Esquiador
+    ctx.save();
+    ctx.translate(jugador.x, jugador.y);
+    ctx.rotate(jugador.angulo);
+    if (jugador.vx < -0.3) ctx.scale(-1, 1);
+
+    if (spriteEsquiador) {
+        ctx.drawImage(spriteEsquiador, -jugador.tamano / 2, -jugador.tamano / 2, jugador.tamano, jugador.tamano);
+    } else {
+        dibujarCirculo(0, 0, jugador.radio, "#ff4d6d", "#000", 2);
+    }
+    ctx.restore();
 }
 
-// --- BUCLE PRINCIPAL ---
 function bucle() {
     actualizarFisicas();
-    if (modo === "play") {
-        redibujarTodo();
-    }
+    if (modo === "play") redibujar();
     requestAnimationFrame(bucle);
 }
 
-ajustarTamanoPizarron();
+ajustarTamano();
 cargarNivel(1);
 bucle();
