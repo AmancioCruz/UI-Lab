@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Flappy Bird - Cartón</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <div id="game-container">
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    
+    <div id="score-display">0</div>
+
+    <!-- Menú de Inicio -->
+    <div id="start-menu" class="cardboard-panel">
+      <button id="btn-play" class="btn-cardboard">JUGAR</button>
+    </div>
+
+    <!-- Menú Game Over -->
+    <div id="gameover-menu" class="cardboard-panel hidden">
+      <div class="score-row">
+        <span>Puntaje:</span>
+        <strong id="final-score">0</strong>
+      </div>
+      <div class="score-row">
+        <span>Mejor Marca:</span>
+        <strong id="best-score">0</strong>
+      </div>
+      <button id="btn-restart" class="btn-cardboard">REINTENTAR</button>
+    </div>
+  </div>
+
+<script src="js/audio.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

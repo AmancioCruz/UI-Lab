@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #2b1f17;
+  font-family: 'Arial Black', Impact, sans-serif;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #baa284;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+#score-display {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  font-size: clamp(40px, 6vw, 64px);
+  color: #3b2413;
+  text-shadow: 2px 2px 0px #e8d5b7;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Paneles superpuestos minimalistas y escalables */
+.cardboard-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  max-width: 420px;
+  padding: clamp(28px, 4vw, 42px) clamp(24px, 4vw, 36px);
+  background-color: #e6d2b5;
+  border: 3px solid #4a2e16;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  z-index: 20;
+}
+
+.score-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: #3b2413;
+}
+
+.score-row strong {
+  font-size: clamp(26px, 3vw, 36px);
+}
+
+/* Botones planos y limpios */
+.btn-cardboard {
+  width: 100%;
+  margin-top: 8px;
+  background-color: #423629;
+  color: #ffffff;
+  border: 3px solid #4a2e16;
+  border-radius: 12px;
+  padding: clamp(14px, 2vw, 20px) 24px;
+  font-family: inherit;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  touch-action: manipulation;
+  transition: background-color 0.15s, transform 0.08s;
+}
+
+.btn-cardboard:hover {
+  background-color: #836e56;
+}
+
+.btn-cardboard:active {
+  transform: scale(0.97);
+}
+
+.hidden {
+  display: none !important;
+}

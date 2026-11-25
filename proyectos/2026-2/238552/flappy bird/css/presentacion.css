@@ -1,0 +1,260 @@
+:root {
+  --morado-oscuro: #211044;
+  --morado: #32185C;
+  --lima: #D9FF43;
+  --turquesa: #54F0DF;
+  --coral: #FF784F;
+  --blanco: #F8FAFC;
+  --lavanda: #E3D9F5;
+  --blanco-puro: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--morado-oscuro);
+  color: var(--blanco);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.wrap {
+  width: 94%;
+  margin: 0 auto;
+}
+
+/* Cuadrículas reutilizables */
+.hero-grid,
+.hud-grid,
+.concept-layout,
+.specs-grid,
+.gallery-grid {
+  display: grid;
+  gap: 36px;
+}
+
+.hero-grid { grid-template-columns: 1.2fr 0.8fr; align-items: center; }
+.hud-grid, .specs-grid { grid-template-columns: repeat(2, 1fr); }
+.concept-layout { grid-template-columns: 0.75fr 1.25fr; }
+.gallery-grid { grid-template-columns: repeat(3, 1fr); }
+
+/* Portada */
+.hero {
+  position: relative;
+  padding: 110px 0;
+  border-bottom: 3px solid var(--lima);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../Recursos/Carton.avif') center/cover no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 7.5vw, 7rem);
+  line-height: 0.98;
+  color: var(--blanco-puro);
+  margin-bottom: 36px;
+}
+
+.hero h1 span {
+  color: var(--lima);
+  display: block;
+}
+
+.btn-main {
+  display: inline-block;
+  background-color: var(--lima);
+  color: var(--morado-oscuro);
+  text-decoration: none;
+  font-size: 1.15rem;
+  padding: 20px 42px;
+  border-radius: 8px;
+}
+
+.btn-main:hover {
+  background-color: var(--turquesa);
+}
+
+.hero-media {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-img-link {
+  max-width: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--lima);
+}
+
+.hero-img-link:hover {
+  border-color: var(--turquesa);
+}
+
+/* Ficha Técnica */
+.hud-bar {
+  background-color: var(--morado);
+  padding: 40px 0;
+}
+
+.hud-item {
+  border-left: 5px solid var(--coral);
+  padding-left: 22px;
+}
+
+.hud-item span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--lima);
+  margin-bottom: 6px;
+}
+
+.hud-item p {
+  font-size: 1.25rem;
+  color: var(--blanco-puro);
+}
+
+/* Secciones y Bloques */
+.section {
+  padding: 100px 0;
+}
+
+.section-alt {
+  background-color: var(--morado);
+  border-block: 1px solid rgba(227, 217, 245, 0.15);
+}
+
+.section-title h2 {
+  font-size: clamp(2rem, 3.5vw, 2.7rem);
+  color: var(--blanco-puro);
+  margin-bottom: 48px;
+}
+
+.concept-body p,
+.spec-block li,
+.gallery-info p {
+  color: var(--lavanda);
+}
+
+.concept-body p {
+  font-size: 1.2rem;
+}
+
+.spec-block,
+.gallery-card {
+  border: 2px solid rgba(227, 217, 245, 0.2);
+  border-radius: 14px;
+}
+
+.spec-block {
+  background-color: var(--morado-oscuro);
+  padding: 40px;
+}
+
+.spec-head h3 {
+  font-size: 1.35rem;
+  color: var(--blanco-puro);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid rgba(227, 217, 245, 0.15);
+}
+
+.spec-block ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.spec-block li {
+  font-size: 1.12rem;
+}
+
+/* Galería */
+.gallery-card {
+  background-color: var(--morado);
+  overflow: hidden;
+}
+
+.gallery-img {
+  height: 280px;
+  background-color: #160a2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+.gallery-img img {
+  max-height: 210px;
+  object-fit: contain;
+}
+
+.gallery-img.bg-carton {
+  padding: 0;
+}
+
+.gallery-img.bg-carton img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+.gallery-info {
+  padding: 34px;
+}
+
+.gallery-info h3 {
+  font-size: 1.4rem;
+  color: var(--blanco-puro);
+  margin-bottom: 12px;
+}
+
+/* Celular y Tablet */
+@media (max-width: 1050px) {
+  html {
+    font-size: 17px;
+  }
+
+  .hero-grid,
+  .hud-grid,
+  .concept-layout,
+  .specs-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .section {
+    padding: 64px 0;
+  }
+
+  .spec-block,
+  .gallery-info {
+    padding: 28px 24px;
+  }
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flapy Bird</title>
+  <link rel="stylesheet" href="css/presentacion.css">
+</head>
+<body>
+
+  <!-- Portada principal  -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-content">
+        <h1>FLAPY <span>BIRD</span></h1>
+        <div class="hero-btns">
+          <a href="index.html" class="btn-main">INICIAR PARTIDA</a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <a href="index.html" class="hero-img-link" title="Iniciar Flapy Bird">
+          <img src="Recursos/Portada.jpeg" alt="Iniciar Flapy Bird">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra de Ficha Técnica -->
+  <section class="hud-bar" id="ficha">
+    <div class="wrap hud-grid">
+      <div class="hud-item">
+        <span>DESARROLLADOR</span>
+        <p>Jorge Antonio Quiroz Resendiz</p>
+      </div>
+      <div class="hud-item">
+        <span>MATRÍCULA</span>
+        <p>238552</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concepto -->
+  <section class="section" id="concepto">
+    <div class="wrap concept-layout">
+      <div class="section-title">
+        <h2>CONCEPTO</h2>
+      </div>
+      <div class="concept-body">
+        <p>
+          Controlas un pequeño pajarito, en un ambiente de cartón, donde debes de pasar por tuberías y sumar el máximo puntaje posible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controles, Mecánica, Reglas de Juego y Funcionamiento -->
+  <section class="section section-alt" id="sistema">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>SISTEMA Y JUGABILIDAD</h2>
+      </div>
+
+      <div class="specs-grid">
+        <article class="spec-block">
+          <div class="spec-head">
+            <h3>CONTROLES</h3>
+          </div>
+          <ul>
+            <li>Teclado: Tecla espacio para impulsar al personaje hacia arriba.</li>
+            <li>Ratón y Táctil: Clic o toque en cualquier punto de la pantalla para aletear.</li>
+            <li>Acceso rápido: Botones directos de inicio y reinicio inmediato.</li>
+          </ul>
+        </article>
+
+        <article class="spec-block">
+          <div class="spec-head">
+            <h3>MECÁNICA</h3>
+          </div>
+          <ul>
+            <li>Cada click que hagas en tu móvil, o en el botón de spacebar o la flechita que apunta hacia arriba en tu teclado, el pajarito ejecutará un salto.</li>
+          </ul>
+        </article>
+
+        <article class="spec-block">
+          <div class="spec-head">
+            <h3>REGLAS DE JUEGO</h3>
+          </div>
+          <ul>
+            <li>Calcula cada click para no chocar con las tuberías, si chocas puedes comenzar de nuevo.</li>
+          </ul>
+        </article>
+
+        <article class="spec-block">
+          <div class="spec-head">
+            <h3>FUNCIONAMIENTO</h3>
+          </div>
+          <ul>
+            <li>Bucle de Animación con Delta Time: El motor utiliza requestAnimationFrame normalizado a 60 FPS mediante Delta Time, garantizando exactamente la misma velocidad física en monitores de 60 Hz, 120 Hz o 144 Hz.</li>
+            <li>Precarga y Escalado Responsivo: Antes de iniciar el primer fotograma, una promesa precarga todos los recursos gráficos y calcula un factor de escala proporcional a la altura de la pantalla para mantener las proporciones de los sprites y colisiones.</li>
+            <li>Motor de Audio sin Archivos Externos: Utiliza la API nativa Web Audio API para sintetizar ondas de sonido en tiempo real tras la primera interacción del usuario.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estilo Visual y Assets -->
+  <section class="section" id="assets">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>ESTILO VISUAL Y ASSETS</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <div class="gallery-img bg-carton">
+            <img src="Recursos/Carton.avif" alt="Fondo de cartón">
+          </div>
+          <div class="gallery-info">
+            <h3>Escenario</h3>
+            <p>Textura de cartón kraft escalada proporcionalmente en modo cover para cubrir toda la pantalla sin deformarse.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img">
+            <img src="Recursos/Pajaro.png" alt="Sprite Pájaro">
+          </div>
+          <div class="gallery-info">
+            <h3>Personaje Principal</h3>
+            <p>Sprite con transparencia y pivote central para ejecutar rotaciones suaves.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img">
+            <img src="Recursos/Tubo.png" alt="Sprite Tubo">
+          </div>
+          <div class="gallery-info">
+            <h3>Obstáculos</h3>
+            <p>Dibujados con altura fija para evitar el estiramiento de la boquilla; los tubos superiores se invierten verticalmente mediante matriz de transformación en el canvas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
