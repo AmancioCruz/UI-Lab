@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/estilo.css">
+</head>
+<body>
+    <!-- Medidas del canva de 500 px-->
+<div class="canvas-wrapper">
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <img src="SRC/Image.png" alt="Marco de enredadera" class="canvas-frame">
+</div>
+    <!-- Div donde contiene los botones interactivos del canva -->
+    <div id="controls">
+<!-- De esto cada uno con su respectivo id para referenciar bien en el JS -->
+        <button id="btn-pause" type="button">Pausa</button>
+        <button id="btn-play" type="button">Play</button>
+        <button id="btn-slower" type="button">Más lento (-)</button>
+        <button id="btn-faster" type="button">Más rápido (+)</button>
+        <span id="speed-label">Velocidad: 1x</span>
+    </div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>

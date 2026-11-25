@@ -1,0 +1,95 @@
+:root {
+ /* Colores del canva y cubo asignados desde un principio con root para poder
+ facilitar su uso mas adelante */
+    --fondo-canvas: #000000;
+    --lima: #b8ff3b;
+    --turquesa: #2de2e6;
+    --coral: #ff5e78;
+    --lavanda: #b388ff;
+    --blanco: #ffffff;
+
+    /* Colores de los botones asignados desde un principio con root para poder
+    facilitar su uso mas adelante */
+    --verde-boton: #2f5d3a;
+    --verde-hover: #3f7a4d;
+    --cafe-borde: #6f4e37;
+    --cafe-oscuro: #4a3222;
+    --texto-boton: #f5efe6;
+}
+/* Selector general para resetear margenes, padding y el box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+/* Canva con margen y un bordo tambien con su color de fondo asignado */
+.canvas-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+}
+
+canvas {
+    display: block; /* Evita el pequeño espacio fantasma debajo del canvas */
+    border: solid 5px   var(--cafe-oscuro);
+    background-color: var(--fondo-canvas);
+}
+
+.canvas-frame {
+    position: absolute;
+    /* Hace que el marco sobresalga 45px por cada lado y abrace los bordes del canvas */
+    top: -110px;
+    left: -110px;
+    width: calc(120% + 150px);
+    height: calc(120% + 150px);
+    pointer-events: none; /* Permite hacer clic a través de la imagen sin estorbar */
+    z-index: 2;
+    opacity: 0.9;
+}
+/* Contenedor donde contiene los botones alineados */
+#controls {
+    margin-top: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+/* Agregamos el estilo base de los botones, paleta verde/café, relieve inferior y transiciones suaves */
+#controls button {
+    padding: 8px 16px;
+    background-color: var(--verde-boton);
+    color: var(--texto-boton);
+    border: 2px solid var(--cafe-borde);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 0 var(--cafe-oscuro);
+    transition: background-color 0.5s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+/* Aclara el fondo verde al pasar el cursor */
+#controls button:hover {
+    background-color: var(--verde-hover);
+}
+/* Oscurece el boton */
+#controls button:active {
+    background-color: var(--cafe-oscuro);
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 var(--cafe-oscuro);
+}
+
+/* Etiqueta para evitar el desplazamiento del label */
+#speed-label {
+    width: 135px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    font-variant-numeric: tabular-nums;
+}
