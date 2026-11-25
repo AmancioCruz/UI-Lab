@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 - Juego</title>
+     <link rel="stylesheet" href="css/estilo2048.css">
+<body>
+
+    <main class="contenedor">
+
+        <header class="encabezado">
+            <div>
+                <h1>2048</h1>
+                <p>Combina los números hasta llegar a 2048</p>
+            </div>
+
+            <div class="puntuacion">
+                <span>PUNTOS</span>
+                <strong id="puntos">0</strong>
+            </div>
+        </header>
+
+        <section class="controles">
+            <button id="reiniciar">Nuevo juego</button>
+            <button id="modoOscuro">Modo oscuro</button>
+        </section>
+
+        <section class="personalizacion">
+            <p>Paleta de colores</p>
+
+            <div class="paletas">
+                <button class="paleta activa" data-paleta="clasica">
+                    Clásica
+                </button>
+
+                <button class="paleta" data-paleta="azul">
+                    Azul
+                </button>
+
+                <button class="paleta" data-paleta="verde">
+                    Verde
+                </button>
+            </div>
+        </section>
+
+        <section id="tablero" aria-label="Tablero de 2048"></section>
+
+        <section class="instrucciones">
+            <h2>¿Cómo jugar?</h2>
+            <p>
+                Utiliza las flechas del teclado para mover los números.
+                Cuando dos números iguales se juntan, se combinan en uno
+                de mayor valor.
+            </p>
+            <p><strong>Objetivo:</strong> conseguir la casilla 2048.</p>
+        </section>
+
+    </main>
+    <div id="pantallaFinal" class="pantalla-final oculto">
+        <div class="ventana-final">
+            <h2 id="tituloFinal">¡Ganaste!</h2>
+            <p id="mensajeFinal"></p>
+
+            <div class="botones-final">
+                <button id="continuar">Continuar</button>
+                <button id="nuevoJuego">Nuevo juego</button>
+            </div>
+        </div>
+    </div>
+        <script src="js/java2048.js"></script>
+</body>
+</html>
