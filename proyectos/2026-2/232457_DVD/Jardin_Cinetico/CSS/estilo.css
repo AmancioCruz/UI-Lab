@@ -39,6 +39,7 @@ body {
 .canvas-wrapper {
     position: relative;
     display: inline-block;
+    flex-shrink: 0;
     width: var(--lado-lienzo);
     margin: calc(var(--lado-lienzo) * 0.25) auto;
 }
@@ -53,7 +54,7 @@ canvas {
 
 .canvas-frame {
     position: absolute;
-    /* Hace que el marco sobresalga 45px por cada lado y abrace los bordes del canvas */
+    /* El marco ocupa un 25 % adicional por cada lado del lienzo. */
     top: -25%;
     left: -25%;
     width: 150%;
@@ -124,20 +125,27 @@ canvas {
     }
 }
 
-@media (min-width: 600px) and (max-height: 500px) {
+@media (min-width: 600px) {
     body {
-        --lado-lienzo: min(28vw, 500px, max(100px, calc((100dvh - 100px) / 1.5)));
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr);
+        --lado-lienzo: min(500px, calc((100vw - 240px) / 1.5), max(100px, calc((100dvh - 100px) / 1.5)));
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    .canvas-wrapper {
+        margin: calc(var(--lado-lienzo) * 0.25);
     }
 
     #controls {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 160px;
+        margin: 0;
+        flex: 0 0 160px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
     }
 
     #speed-label {
-        grid-column: 1 / -1;
-        justify-self: center;
+        width: 100%;
     }
 }
