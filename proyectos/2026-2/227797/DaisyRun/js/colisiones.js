@@ -6,8 +6,9 @@ function detectarColision(daisy, enemigo) {
     let limitesEnemigo = enemigo.getBoundingClientRect();
 
     //areas de colision
-    let margenDaisy = 12;
-    let margenEnemigo = 14;
+    const escalaVisual = limitesDaisy.width / daisy.offsetWidth;
+    let margenDaisy = 12 * escalaVisual;
+    let margenEnemigo = 14 * escalaVisual;
 
     //comprobamos si los elementos se estan tocando
     return (

@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2048 - Juego</title>
      <link rel="stylesheet" href="css/estilo2048.css">
+    <link rel="stylesheet" href="../../../../css/controles-tactiles.css">
+    <link rel="icon" type="image/png" href="../../../../recursos/img/icono-ui-02-02.png">
+</head>
 <body>
+    <script src="../../../../js/menu-ui-lab.js" defer></script>
 
     <main class="contenedor">
 
@@ -47,12 +51,18 @@
 
         <section id="tablero" aria-label="Tablero de 2048"></section>
 
+
+    <div class="controles-tactiles direcciones" aria-label="Controles táctiles del juego">
+        <button type="button" data-tecla="ArrowUp" aria-label="Mover arriba">↑</button>
+        <button type="button" data-tecla="ArrowLeft" aria-label="Mover izquierda">←</button>
+        <button type="button" data-tecla="ArrowDown" aria-label="Mover abajo">↓</button>
+        <button type="button" data-tecla="ArrowRight" aria-label="Mover derecha">→</button>
+    </div>
         <section class="instrucciones">
             <h2>¿Cómo jugar?</h2>
             <p>
-                Utiliza las flechas del teclado para mover los números.
-                Cuando dos números iguales se juntan, se combinan en uno
-                de mayor valor.
+                Mueve las fichas con las flechas o los botones.
+                Dos números iguales se combinan en uno de mayor valor.
             </p>
             <p><strong>Objetivo:</strong> conseguir la casilla 2048.</p>
         </section>
@@ -70,5 +80,6 @@
         </div>
     </div>
         <script src="js/java2048.js"></script>
+    <script src="../../../../js/controles-tactiles.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@
     --fondo-acerca: var(--fondo-pagina);
     --fondo-proyectos: var(--fondo-pagina);
     --fondo-tarjeta: var(--blanco-puro);
+    --fondo-pie: var(--blanco-puro);
     --borde-tarjeta: var(--gris-lavanda);
     --texto-secundario: var(--morado);
     --acento: var(--lima);
@@ -31,6 +32,7 @@ body {
 }
 
 .cabecera {
+    border-block-end: 1px solid var(--borde-tarjeta);
     background-color: var(--fondo-cabecera);
     color: var(--texto-cabecera);
 }
@@ -41,21 +43,18 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem 2rem;
-    padding-block: 1rem;
+    padding-block: 0.75rem;
 }
 
 .contenedor-logo {
-    display: grid;
+    display: block;
     width: fit-content;
-    font-size: 1.6rem;
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -0.06em;
     text-decoration: none;
 }
 
-.logo-punto {
-    color: var(--morado);
+.contenedor-logo img {
+    width: clamp(3.5rem, 6vw, 4rem);
+    height: auto;
 }
 
 .barra-navegacion ul {
@@ -82,28 +81,30 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    gap: clamp(1rem, 4vw, 3rem);
-    margin-block-start: clamp(1.25rem, 4vw, 3rem);
-    padding: clamp(1.5rem, 5vw, 4rem);
+    gap: clamp(1.25rem, 3vw, 2rem);
+    margin-block-start: 1.75rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
     border-radius: 1.25rem;
     background: linear-gradient(120deg, var(--fondo-portada-claro), var(--fondo-portada));
     color: var(--texto-portada);
 }
 
 .portada h1 {
-    font-size: clamp(3.25rem, 10vw, 7.25rem);
+    font-size: clamp(3.25rem, 7vw, 5.5rem);
     font-weight: 850;
     line-height: 0.95;
     letter-spacing: -0.06em;
 }
 
 .portada p {
-    max-width: 22ch;
     margin-block-start: 0.75rem;
-    font-size: clamp(1.15rem, 3vw, 2.15rem);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
     font-weight: 650;
-    line-height: 1.2;
-    text-wrap: balance;
+    line-height: 1.35;
+}
+
+.portada > div {
+    min-width: 0;
 }
 
 .portada img {
@@ -112,24 +113,10 @@ body {
     justify-self: center;
 }
 
-.boton-portada {
-    display: inline-block;
-    margin-block-start: 1.5rem;
-    padding: 0.75em 1.3em;
-    border-radius: 0.8rem;
-    background-color: var(--acento);
-    color: var(--texto-pagina);
-    font-size: clamp(1rem, 2vw, 1.35rem);
-    font-weight: 800;
-    text-decoration: none;
-}
-
-.boton-portada:hover {
-    text-decoration: underline;
-}
-
-.boton-portada:focus-visible {
-    outline-color: var(--texto-portada);
+.portada .portada-descripcion {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .acerca,
@@ -142,8 +129,19 @@ body {
 }
 
 .acerca p {
-    max-width: 75ch;
-    font-size: clamp(1rem, 2.25vw, 1.3rem);
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.acerca-contenido {
+    min-width: 0;
+}
+
+.acerca .datos-docente {
+    margin-block-start: 1rem;
+    font-size: 1rem;
+    color: var(--texto-secundario);
 }
 
 .proyectos {
@@ -153,7 +151,7 @@ body {
 .acerca h2,
 .proyectos h2 {
     margin-block-end: 0.65rem;
-    font-size: clamp(1.85rem, 4.5vw, 3.3rem);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
     font-weight: 800;
     line-height: 1.15;
     letter-spacing: -0.035em;
@@ -178,12 +176,41 @@ body {
 .categorias {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem clamp(1rem, 3vw, 2rem);
+    gap: 3rem;
+}
+
+.pestanas-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem 1.5rem;
+    margin-block-end: 1.5rem;
+}
+
+.pestanas-categorias button {
+    padding: 0.6rem 0.15rem;
+    border: 0;
+    border-block-end: 3px solid transparent;
+    background-color: transparent;
+    color: var(--texto-pagina);
+    font-size: clamp(1.125rem, 2vw, 1.3rem);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pestanas-categorias button[aria-selected="true"] {
+    border-block-end-color: var(--acento);
+}
+
+.pestanas-categorias button:hover {
+    border-block-end-color: var(--acento);
 }
 
 .categoria h3 {
-    margin-block-end: 0.75rem;
-    font-size: clamp(1.35rem, 3vw, 2.1rem);
+    margin-block-end: 1.25rem;
+    padding-block-end: 0.75rem;
+    border-block-end: 1px solid var(--borde-tarjeta);
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
     font-weight: 700;
 }
 
@@ -191,10 +218,14 @@ body {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
+    align-items: stretch;
 }
 
 .tarjeta-proyecto {
-    display: block;
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: center;
+    min-width: 0;
     overflow: hidden;
     border: 1px solid var(--borde-tarjeta);
     border-radius: 1rem;
@@ -214,56 +245,101 @@ body {
 
 .tarjeta-proyecto img {
     width: 100%;
-    aspect-ratio: 600 / 320;
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 
 .tarjeta-contenido {
     position: relative;
-    padding: 0.85rem 3rem 1rem 1rem;
+    padding: 0.85rem 2rem 0.85rem 0.85rem;
 }
 
 .tarjeta-proyecto h4 {
-    font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+    font-size: 1rem;
     font-weight: 800;
     line-height: 1.2;
 }
 
 .tarjeta-proyecto p {
-    margin-block-start: 0.2rem;
+    margin-block-start: 0.35rem;
+    font-size: 0.8125rem;
     color: var(--texto-secundario);
 }
 
 .tarjeta-flecha {
     position: absolute;
-    inset-block-start: 0.55rem;
-    inset-inline-end: 1rem;
-    font-size: 1.85rem;
+    inset-block-start: 0.7rem;
+    inset-inline-end: 0.65rem;
+    font-size: 1.35rem;
     line-height: 1;
 }
 
 .pie {
     margin-block-start: clamp(2rem, 5vw, 4rem);
-    padding-block: 1rem 1.5rem;
+    padding-block: 1.5rem;
     border-block-start: 1px solid var(--borde-tarjeta);
     text-align: center;
+    background-color: var(--fondo-pie);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+.pie p + p {
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+}
+
+.pie .creditos-proyectos {
+    color: var(--texto-secundario);
+    font-size: 0.875rem;
 }
 
 /* Móvil es la base. Tableta desde 48rem (768 px con texto base de 16 px). */
 @media (min-width: 48rem) {
-    .portada,
-    .categorias {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .portada {
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+
+    .contenedor-proyectos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .tarjeta-proyecto {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+        align-items: stretch;
+    }
+
+    .tarjeta-proyecto h4 {
+        min-height: 2.4em;
     }
 
     .portada img {
-        max-width: 100%;
+        max-width: 22rem;
     }
 }
 
 /* Escritorio desde 64rem (1024 px con texto base de 16 px). */
 @media (min-width: 64rem) {
+    .acerca .contenedor {
+        display: grid;
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .acerca h2 {
+        margin: 0;
+        max-width: 15ch;
+    }
+
+    .acerca-contenido {
+        padding-inline-start: 2rem;
+        border-inline-start: 1px solid var(--borde-tarjeta);
+    }
+
     .contenedor-proyectos {
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }

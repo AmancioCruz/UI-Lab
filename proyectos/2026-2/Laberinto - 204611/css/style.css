@@ -37,47 +37,54 @@ body {
      margin: 0; 
      color: var(--turquesa); 
      font-size: 11px; 
-     font-weight: bold; 
-     letter-spacing: 2px; 
+     font-weight: 500;
+     letter-spacing: 0.25px;
+     line-height: 1.4;
 }
 
 h1 { 
-    margin: 8px 0; 
-    font-size: clamp(32px, 7vw, 46px); 
-    letter-spacing: -2px; 
+    margin: 8px 0 4px;
+    font-size: clamp(28px, 3.5vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -1px;
 }
 h1 span { 
     color: var(--lima); 
 }
 
 .descripcion { 
-    margin: 0 0 20px; 
+    margin: 0 0 14px;
     color: var(--lavanda); 
     font-size: 14px; 
+    line-height: 1.5;
 }
 
 .marcador { 
-    display: flex; 
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center; 
     justify-content: space-between; 
-    gap: 12px; 
-    padding: 12px; 
-    margin-bottom: 14px;
+    gap: 10px;
+    min-height: 48px;
+    padding: 8px 16px;
+    margin-bottom: 20px;
     border-radius: 12px; 
     background: var(--morado-oscuro); 
     text-align: left; 
 }
 
 .dato { 
-    display: block; 
-    margin-bottom: 4px; 
+    display: inline;
+    margin-right: 6px;
     color: var(--lavanda); 
     font-size: 10px; 
-    letter-spacing: 1px; 
+    letter-spacing: 0.5px;
 }
 
 .marcador strong { 
-    font-size: 19px; 
+    font-size: 18px;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
 }
 
 .movimientos { 
@@ -172,9 +179,11 @@ h1 span {
 .leyenda { 
     display: flex; 
     justify-content: center; 
-    flex-wrap: wrap; gap: 16px; 
+    flex-wrap: wrap;
+    gap: 8px 14px;
     margin: 13px 0; 
-    font-size: 12px; 
+    font-size: 12px;
+    line-height: 1.4;
     color: var(--lavanda); 
 }
 
@@ -199,7 +208,8 @@ h1 span {
 .mensaje { 
     min-height: 20px; 
     margin: 10px 0; 
-    font-size: 14px; 
+    font-size: clamp(17px, 2vw, 21px);
+    line-height: 1.3;
     font-weight: bold; 
     color: var(--turquesa); 
 }
@@ -210,9 +220,10 @@ h1 span {
 
 .controles { 
     display: grid; 
-    grid-template-columns: repeat(3, 44px); 
-    grid-template-rows: repeat(2, 40px); 
-    justify-content: center; gap: 5px; 
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(2, 48px);
+    justify-content: center;
+    gap: 7px;
 }
 
 button { 
@@ -243,7 +254,8 @@ button:disabled {
 
 .controles button { 
     padding: 0; 
-    font-size: 24px; 
+    font-size: 28px;
+    line-height: 1;
     background: var(--lavanda); 
     touch-action: manipulation; 
 }
@@ -277,7 +289,10 @@ button:disabled {
 }
 
 .ayuda { 
-    font-size: 12px; 
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 30ch;
+    justify-self: center;
     color: var(--lavanda); 
     margin: 12px 0; 
 }
@@ -290,7 +305,11 @@ button:disabled {
 }
 
 .acciones button { 
-    font-size: 13px; 
+    font-size: 14px;
+    min-height: 44px;
+    width: 100%;
+    max-width: 240px;
+    padding: 10px 16px;
 }
 
 .secundario { 
@@ -309,6 +328,39 @@ button:disabled {
     background: var(--turquesa); 
 }
 
+.zona-juego {
+    display: grid;
+    gap: 16px;
+    align-items: center;
+}
+
+.panel-controles {
+    min-width: 0;
+    display: grid;
+    gap: 18px;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+    padding-block: 8px;
+}
+
+.panel-controles .leyenda,
+.panel-controles .mensaje,
+.panel-controles .ayuda {
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .juego {
+        width: min(100%, 900px);
+    }
+
+    .zona-juego {
+        grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+        gap: 24px;
+    }
+}
+
 @media (max-width: 380px) {
   body 
 { 
@@ -320,9 +372,212 @@ button:disabled {
     }
         .marcador { 
         gap: 5px; 
+        padding-inline: 8px;
+    }
+
+    .dato {
+        display: block;
+        margin: 0 0 2px;
     }
 
         .paso { 
         width: 9px; 
+    }
+}
+
+@media (max-width: 1023px) {
+    body {
+        min-height: 100dvh;
+        padding: 10px 10px 52px;
+    }
+
+    .juego {
+        padding: 10px;
+    }
+
+    .etiqueta {
+        font-size: 10px;
+        letter-spacing: 0;
+    }
+
+    h1 {
+        margin-block: 3px;
+        font-size: 26px;
+    }
+
+    .descripcion {
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+
+    .marcador {
+        min-height: 36px;
+        margin-bottom: 8px;
+        padding-block: 6px;
+    }
+
+    .zona-juego {
+        gap: 10px;
+    }
+
+    .tablero-marco {
+        width: min(100%, max(140px, calc(100dvh - 385px)));
+        justify-self: center;
+    }
+
+    .panel-controles {
+        grid-template-columns: 146px minmax(0, 1fr);
+        grid-template-areas:
+            "leyenda leyenda"
+            "mensaje mensaje"
+            "flechas acciones";
+        align-items: center;
+        gap: 6px;
+        padding: 0;
+        max-width: 360px;
+    }
+
+    .leyenda {
+        grid-area: leyenda;
+        font-size: 11px;
+    }
+
+    .mensaje {
+        grid-area: mensaje;
+        font-size: 16px;
+    }
+
+    .controles {
+        grid-area: flechas;
+        grid-template-columns: repeat(3, 44px);
+        grid-template-rows: repeat(2, 44px);
+    }
+
+    .ayuda {
+        grid-area: ayuda;
+        font-size: 12px;
+        display: none;
+    }
+
+    .mensaje:not(.exito) {
+        display: none;
+    }
+
+    .acciones {
+        grid-area: acciones;
+        align-self: end;
+        justify-content: flex-start;
+    }
+
+    .acciones button {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+    body {
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .juego {
+        width: min(100%, 480px);
+        padding: 24px;
+    }
+
+    .zona-juego,
+    .panel-controles {
+        display: contents;
+    }
+
+    .tablero-marco {
+        width: 420px;
+        max-width: 100%;
+        margin-inline: auto;
+    }
+
+    .etiqueta {
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        line-height: normal;
+    }
+
+    h1 {
+        margin: 8px 0;
+        font-size: 46px;
+        letter-spacing: -2px;
+        line-height: normal;
+    }
+
+    .descripcion {
+        margin: 0 0 20px;
+        font-size: 14px;
+        line-height: normal;
+    }
+
+    .marcador {
+        display: flex;
+        gap: 12px;
+        min-height: 0;
+        padding: 12px;
+        margin-bottom: 14px;
+    }
+
+    .dato {
+        display: block;
+        margin: 0 0 4px;
+        letter-spacing: 1px;
+    }
+
+    .marcador strong {
+        font-size: 19px;
+        line-height: normal;
+    }
+
+    .panel-controles .leyenda {
+        gap: 16px;
+        margin: 13px 0;
+        font-size: 12px;
+        line-height: normal;
+    }
+
+    .panel-controles .mensaje {
+        display: block;
+        margin: 10px 0;
+        font-size: 14px;
+        line-height: normal;
+    }
+
+    .controles {
+        grid-template-columns: repeat(3, 44px);
+        grid-template-rows: repeat(2, 40px);
+        gap: 5px;
+    }
+
+    .controles button {
+        font-size: 24px;
+        line-height: normal;
+    }
+
+    .panel-controles .ayuda {
+        display: block;
+        max-width: none;
+        margin: 12px 0;
+        font-size: 12px;
+        line-height: normal;
+    }
+
+    .acciones {
+        justify-content: center;
+    }
+
+    .acciones button {
+        width: auto;
+        max-width: none;
+        min-height: 0;
+        padding: 10px 14px;
+        font-size: 13px;
     }
 }

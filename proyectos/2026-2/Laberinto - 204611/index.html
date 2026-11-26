@@ -6,6 +6,8 @@
   <title>Laberinto | Minijuego Clase POO</title>
   <link rel="stylesheet" href="css/style.css">
 
+    <script src="../../../js/menu-ui-lab.js" defer></script>
+    <link rel="icon" type="image/png" href="../../../recursos/img/icono-ui-02-02.png">
 </head>
 <body>
   <main class="juego">
@@ -21,10 +23,12 @@
       <div class="movimientos"><span class="dato">MOVIMIENTOS</span><strong id="movimientos">0</strong></div>
     </section>
 
+    <div class="zona-juego">
     <div class="tablero-marco">
       <div id="laberinto" class="laberinto" role="img" aria-label="Mapa del laberinto"></div>
     </div>
 
+    <div class="panel-controles">
     <div class="leyenda">
       <span><i class="muestra jugador"></i> Jugador</span>
       <span><i class="muestra meta"></i> Salida</span>
@@ -44,6 +48,8 @@
     <div class="acciones">
       <button id="reiniciar" class="secundario">Reiniciar nivel</button>
       <button id="siguiente" class="primario" hidden>Siguiente nivel</button>
+    </div>
+    </div>
     </div>
 
   </main>

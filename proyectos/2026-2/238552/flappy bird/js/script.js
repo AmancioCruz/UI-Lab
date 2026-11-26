@@ -118,8 +118,8 @@ const bird = {
 // Ajusta el tamaño del canvas y escala proporcionalmente todos los elementos al tamaño de ventana
 function resizeCanvas() {
   // Iguala la resolución interna del canvas al tamaño real de la ventana
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = canvas.parentElement.clientHeight;
 
   // Calcula el factor de escala tomando como referencia una altura base de 680px
   scale = Math.max(0.85, canvas.height / 680);
@@ -143,6 +143,7 @@ function resizeCanvas() {
 }
 // Escucha cambios de tamaño en la ventana (o giro de pantalla en celular)
 window.addEventListener('resize', resizeCanvas);
+new ResizeObserver(resizeCanvas).observe(canvas.parentElement);
 // Ejecuta el ajuste inicial al cargar la página
 resizeCanvas();
 

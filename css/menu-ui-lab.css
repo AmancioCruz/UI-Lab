@@ -1,0 +1,59 @@
+@import url("colores.css");
+
+:host {
+    all: initial;
+    display: block;
+    position: fixed;
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+    z-index: 10000;
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    font-family: system-ui, sans-serif;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+a {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: 2px solid var(--morado-oscuro);
+    border-radius: 0.75rem;
+    background-color: var(--lima);
+    color: var(--morado-oscuro);
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 3px 12px rgb(0 0 0 / 15%);
+}
+
+a:hover {
+    background-color: var(--blanco);
+}
+
+svg {
+    width: 22px;
+    height: 22px;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--morado-oscuro);
+    outline-offset: 3px;
+}
+
+@media print {
+    :host {
+        display: none;
+    }
+}

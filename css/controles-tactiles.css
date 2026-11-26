@@ -1,0 +1,65 @@
+.controles-tactiles {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px auto;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.controles-tactiles button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid currentColor;
+    border-radius: 8px;
+    background: var(--control-fondo, Canvas);
+    color: var(--control-texto, CanvasText);
+    font: 700 16px system-ui, sans-serif;
+    touch-action: none;
+    user-select: none;
+}
+
+.controles-tactiles button:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
+.controles-tactiles.direcciones {
+    display: grid;
+    grid-template-columns: repeat(4, 44px);
+    grid-template-rows: 44px;
+    gap: 6px;
+}
+
+.controles-tactiles.direcciones button {
+    padding: 0;
+    font-size: 24px;
+}
+
+.controles-tactiles [data-tecla="ArrowUp"] {
+    grid-column: 2;
+}
+
+.controles-tactiles [data-tecla="ArrowLeft"] {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.controles-tactiles [data-tecla="ArrowDown"] {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.controles-tactiles [data-tecla="ArrowRight"] {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+@media (min-width: 1024px) and (pointer: fine) {
+    .controles-tactiles,
+    .controles-tactiles.direcciones {
+        display: none;
+    }
+}

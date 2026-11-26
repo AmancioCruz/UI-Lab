@@ -5,6 +5,9 @@
 }
 
 body {
+    --control-fondo: #315b36;
+    --control-texto: #ffffff;
+    padding-top: max(60px, calc(env(safe-area-inset-top) + 60px));
     background-color: #e8f3df;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -12,9 +15,9 @@ body {
 
 /*titulo*/
 h1 {
-    margin-top: 30px;
+    margin: 12px 12px 0;
     color: #FF784F;
-    font-size: 46px;
+    font-size: clamp(24px, 5vw, 46px);
     font-weight: 900;
     letter-spacing: 2px;
     text-shadow: 3px 3px 0px #315b36;
@@ -24,7 +27,7 @@ h1 {
 #juego {
     width: 800px;
     height: 300px;
-    margin: 40px auto;
+    margin: 0;
     background-color: #ffffff;
     border: 3px solid #315b36;
     position: relative;
@@ -158,4 +161,46 @@ h1 {
 /*efectito al pasar el mouse sobre el boton*/
 #btnReiniciar:hover {
     background-color: #f28c28;
+}
+
+.escenario-adaptable {
+    position: relative;
+    width: min(calc(100% - 24px), 800px);
+    margin: 20px auto;
+}
+
+#juego {
+    transform-origin: top left;
+}
+
+#puntuacion {
+    top: 10px;
+    right: 12px;
+    font-size: clamp(16px, 3vw, 28px);
+}
+
+#mensajegameover {
+    width: min(80%, 280px);
+    top: 22%;
+    padding: 8px 12px;
+    font-size: clamp(20px, 4vw, 35px);
+}
+
+#btnReiniciar {
+    top: 65%;
+    min-height: 40px;
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+@media (max-height: 500px) {
+    h1 {
+        margin-top: 4px;
+        font-size: 24px;
+    }
+
+    .escenario-adaptable {
+        width: min(calc(100% - 24px), 800px, calc((100dvh - 190px) * 8 / 3));
+        margin-block: 8px;
+    }
 }

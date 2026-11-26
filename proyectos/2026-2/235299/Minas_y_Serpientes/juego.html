@@ -7,6 +7,9 @@
     <title>Snake Mines</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/juego.css">
+    <script src="../../../../js/menu-ui-lab.js" defer></script>
+    <link rel="stylesheet" href="../../../../css/controles-tactiles.css">
+    <link rel="icon" type="image/png" href="../../../../recursos/img/icono-ui-02-02.png">
 </head>
 
 <body>
@@ -28,17 +31,25 @@
             <div id="gameBoard" class="game-board">
                 <!-- Las casillas se generan con JavaScript -->
             </div>
+            <section id="gameMessage" class="game-message" aria-live="polite">
+                <h2 id="messageTitle"></h2>
+                <p id="messageText"></p>
+            </section>
         </section>
         <section class="game-controls">
             <button id="startBtn" type="button">Iniciar juego</button>
             <button id="restartBtn" type="button">Reiniciar</button>
         </section>
-        <section id="gameMessage" class="game-message" aria-live="polite">
-            <h2 id="messageTitle"></h2>
-            <p id="messageText"></p>
-        </section>
+
+    <div class="controles-tactiles direcciones" aria-label="Controles táctiles del juego">
+        <button type="button" data-tecla="ArrowUp" aria-label="Mover arriba">↑</button>
+        <button type="button" data-tecla="ArrowLeft" aria-label="Mover izquierda">←</button>
+        <button type="button" data-tecla="ArrowDown" aria-label="Mover abajo">↓</button>
+        <button type="button" data-tecla="ArrowRight" aria-label="Mover derecha">→</button>
+    </div>
     </main>
     <script src="js/juego.js"></script>
+    <script src="../../../../js/controles-tactiles.js"></script>
 </body>
 
 </html>

@@ -7,12 +7,17 @@
     <title>Princess Daisy Run</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/adaptacion.js" defer></script>
+    <script src="../../../../js/menu-ui-lab.js" defer></script>
+    <link rel="stylesheet" href="../../../../css/controles-tactiles.css">
+    <link rel="icon" type="image/png" href="../../../../recursos/img/icono-ui-02-02.png">
 </head>
 <body>
 
     <h1>Princess Daisy Run</h1>
 
     <!--contenedor principal donde desarrollare el juego-->
+    <div class="escenario-adaptable">
     <div id="juego">
 
         <!--fondo y sus capas-->
@@ -24,13 +29,14 @@
             <div id="nubes"></div>
         </div>
 
-        <div id="puntuacion">0</div>
-
         <!--daisy-->
         <img id="daisy" src="recursos/daisy/daisycorriendo.png" alt="Daisy">
 
         <!--piso-->
         <div id="suelo"></div>
+
+    </div>
+        <div id="puntuacion">0</div>
 
         <!--usamos hidden porque queremos que el boton no se muestre mientras el juego esta corriendo-->
         <div id="mensajegameover" hidden>GAME OVER</div>
@@ -39,11 +45,17 @@
 
     </div>
 
+
+    <div class="controles-tactiles" aria-label="Controles táctiles del juego">
+        <button type="button" data-tecla="ArrowUp" aria-label="Saltar">Saltar</button>
+        <button type="button" data-tecla="ArrowDown" aria-label="Agacharse">Agacharse</button>
+    </div>
     <script src="js/escenario.js"></script>
     <script src="js/enemigos.js"></script>
     <script src="js/colisiones.js"></script>
     <script src="js/sonidos.js"></script>
     <script src="js/script.js"></script>
 
+    <script src="../../../../js/controles-tactiles.js"></script>
 </body>
 </html>

@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI Lab | Inicio</title>
+    <link rel="icon" type="image/png" href="recursos/img/icono-ui-02-02.png">
     <link rel="stylesheet" href="css/estilo.css">
+    <script src="js/categorias.js" defer></script>
 </head>
 
 <body id="inicio">
     <header class="cabecera">
         <div class="contenedor">
             <a class="contenedor-logo" href="#inicio" aria-label="UI Lab, inicio">
-                <span>UI<span class="logo-punto">.</span></span>
-                <span>LAB</span>
+                <img src="recursos/img/UI-lab-logo_Mesa%20de%20trabajo%201.png" alt="UI Lab" width="4167" height="4167">
             </a>
 
             <nav class="barra-navegacion" aria-label="Navegación principal">
@@ -29,21 +30,29 @@
         <section class="portada contenedor" aria-labelledby="titulo-portada">
             <div>
                 <h1 id="titulo-portada">UI Lab</h1>
-                <p>UI Diseño y Desarrollo de Interfaz Dinámica</p>
-                <a class="boton-portada" href="#proyectos">Ver proyectos</a>
+                <p class="portada-subtitulo">UI Diseño y Desarrollo de Interfaz Dinámica</p>
+                <p class="portada-descripcion">Diseña, desarrolla y comparte experiencias web.</p>
             </div>
             <img src="recursos/img/interfaz.svg" alt="" width="480" height="340">
         </section>
 
         <section class="acerca" id="acerca" aria-labelledby="titulo-acerca">
             <div class="contenedor">
-                <h2 id="titulo-acerca">¿Qué es UI Lab?</h2>
+                <h2 id="titulo-acerca">Un laboratorio de interfaces web</h2>
 
+                <div class="acerca-contenido">
                 <p>
-                    UI Lab reúne los proyectos de la materia UI Diseño y Desarrollo de
-                    Interfaz Dinámica. En clase exploramos cómo combinar diseño
-                    visual, programación e interacción para crear experiencias web.
+                    UI Lab es un laboratorio de diseño y desarrollo de interfaces web
+                    donde los estudiantes comparten sus proyectos finales de la materia
+                    UI — Diseño y Desarrollo de Interfaz Dinámica. Aquí encontrarás
+                    animaciones, minijuegos y otras experiencias web que combinan
+                    creatividad, diseño y programación.
                 </p>
+                <p class="datos-docente">
+                    <strong>Profesor: Lic. Amancio Torres Cruz</strong><br>
+                    Licenciatura en Diseño Digital de Medios Interactivos - Universidad Autónoma de Ciudad Juárez.
+                </p>
+                </div>
             </div>
         </section>
 
@@ -51,39 +60,92 @@
             <div class="contenedor">
                 <h2 id="titulo-proyectos">Proyectos del semestre <span class="semestre">2026-2</span></h2>
 
+                <div class="pestanas-categorias" role="tablist" aria-label="Categorías de proyectos" hidden>
+                    <button type="button" id="pestana-minijuegos" role="tab" aria-controls="panel-minijuegos" aria-selected="true">Minijuegos</button>
+                    <button type="button" id="pestana-animaciones" role="tab" aria-controls="panel-animaciones" aria-selected="false" tabindex="-1">Animaciones</button>
+                </div>
+
                 <div class="categorias">
-                    <section class="categoria" aria-labelledby="titulo-minijuegos">
+                    <section class="categoria" id="panel-minijuegos" aria-labelledby="titulo-minijuegos">
                         <h3 id="titulo-minijuegos">Minijuegos</h3>
 
                         <div class="contenedor-proyectos">
-                            <a class="tarjeta-proyecto" href="proyectos/2026-2/docente/index.html">
-                                <img src="recursos/img/piedra-papel-tijera.svg" alt="" width="600" height="320">
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/217859/Leonardo%20Lozano%20-%20Line%20Raider/index.html">
+                                <img src="proyectos/2026-2/217859/equiador.jpg" alt="" loading="lazy">
                                 <div class="tarjeta-contenido">
-                                    <h4>Piedra, papel o tijera</h4>
-                                    <p>Proyecto de ejemplo · Docente</p>
+                                    <h4>Line Rider</h4>
+                                    <p>Leonardo Lozano · 217859</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/238552/flappy%20bird/Presentacion.html">
+                                <img src="proyectos/2026-2/238552/flappy%20bird/Portada.jpeg" alt="" loading="lazy">
+                                <div class="tarjeta-contenido">
+                                    <h4>Flappy Bird</h4>
+                                    <p>Jorge Antonio Quiroz Resendiz · 238552</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/220066/2048/index.html">
+                                <img src="proyectos/2026-2/220066/portada.png" alt="" width="2084" height="2084" loading="lazy">
+                                <div class="tarjeta-contenido">
+                                    <h4>2048</h4>
+                                    <p>Esteban de Jesus Torres Valdez · 220066</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/Laberinto%20-%20204611/index.html">
+                                <img src="proyectos/2026-2/Laberinto%20-%20204611/Laberinto_portada.png" alt="" width="1254" height="1254" loading="lazy">
+                                <div class="tarjeta-contenido">
+                                    <h4>Laberinto</h4>
+                                    <p>José Ignacio López Estrada · 204611</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/235299/Minas_y_Serpientes/index.html">
+                                <img src="proyectos/2026-2/235299/Portada.png" alt="" width="500" height="500" loading="lazy">
+                                <div class="tarjeta-contenido">
+                                    <h4>SNAKE MINES</h4>
+                                    <p>José Antonio Gómez Hurtado · 235299</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/227797/DaisyRun/index.html">
+                                <img src="proyectos/2026-2/227797/DaisyRunArt.png" alt="" width="500" height="500" loading="lazy">
+                                <div class="tarjeta-contenido">
+                                    <h4>Princess Daisy Run</h4>
+                                    <p>Luis Eduardo Rangel Sanchez · 227797</p>
                                     <span class="tarjeta-flecha" aria-hidden="true">↗</span>
                                 </div>
                             </a>
                             <a class="tarjeta-proyecto" href="proyectos/2026-2/239257/Poker/index2.html">
-                                <img src="recursos/img/Portada Poker.png" alt="" width="600" height="320">
+                                <img src="proyectos/2026-2/239257/Poker/Portada%20Poker.png" alt="" width="500" height="500" loading="lazy">
                                 <div class="tarjeta-contenido">
-                                    <h4>Luigi´s Poker</h4>
-                                    <p>Poker inspirado en el minijuego de mario de la DS · Braulio Cárdenas Molina</p>
+                                    <h4>Luigi’s Poker Night</h4>
+                                    <p>Braulio Cárdenas Molina · 239257</p>
                                     <span class="tarjeta-flecha" aria-hidden="true">↗</span>
                                 </div>
                             </a>
                         </div>
                     </section>
 
-                    <section class="categoria" aria-labelledby="titulo-animaciones">
+                    <section class="categoria" id="panel-animaciones" aria-labelledby="titulo-animaciones">
                         <h3 id="titulo-animaciones">Animaciones</h3>
 
                         <div class="contenedor-proyectos">
-                            <a class="tarjeta-proyecto" href="proyectos/2026-2/jardin-animado/index.html">
-                                <img src="recursos/img/jardin.svg" alt="" width="600" height="320">
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/232457_DVD/Jardin_Cinetico/index.html">
+                                <img src="proyectos/2026-2/232457_DVD/Jard%C3%ADn_Cin%C3%A9tico.png" alt="" width="2550" height="3300" loading="lazy">
                                 <div class="tarjeta-contenido">
-                                    <h4>Jardín animado</h4>
-                                    <p>Proyecto estudiantil</p>
+                                    <h4>Jardín Cinético</h4>
+                                    <p>Ariadne Sofía Barraza González · 232457</p>
+                                    <span class="tarjeta-flecha" aria-hidden="true">↗</span>
+                                </div>
+                            </a>
+                            <a class="tarjeta-proyecto" href="proyectos/2026-2/214650/Presentacion/index.html">
+                                <img src="proyectos/2026-2/214650/Icono/IconoClima.jpg" alt="" width="500" height="500" loading="lazy">
+                                <div class="tarjeta-contenido">
+                                    <h4>Transformaciones del cielo</h4>
+                                    <p>Damaris Esmelani Varela Torres · 214650</p>
                                     <span class="tarjeta-flecha" aria-hidden="true">↗</span>
                                 </div>
                             </a>
@@ -93,8 +155,11 @@
             </div>
         </section>
     </main>
-    <footer class="pie contenedor">
-        <p>UI Lab · UI Diseño y Desarrollo de Interfaz Dinámica</p>
+    <footer class="pie">
+        <div class="contenedor">
+            <p>© 2026 UI Lab · Sitio creado y desarrollado por Amancio Torres Cruz.</p>
+            <p class="creditos-proyectos">Cada proyecto incluye los créditos de sus respectivos autores.</p>
+        </div>
     </footer>
 </body>
 

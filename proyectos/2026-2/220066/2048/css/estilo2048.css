@@ -114,14 +114,16 @@ body[data-paleta="verde"] .celda.v2048 {
 }
 
 body {
-    min-height: 100vh;
+    --control-fondo: var(--boton);
+    --control-texto: var(--boton-texto);
+    min-height: 100dvh;
     background: var(--fondo);
     color: var(--texto);
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 25px;
+    padding: 12px;
     transition: background 0.2s, color 0.2s;
 }
 
@@ -129,7 +131,7 @@ body {
     width: 100%;
     max-width: 500px;
     background: var(--contenedor);
-    padding: 25px;
+    padding: 16px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
 }
@@ -139,11 +141,11 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 .encabezado h1 {
-    font-size: 48px;
+    font-size: clamp(30px, 6vw, 42px);
 }
 
 .encabezado p {
@@ -172,7 +174,7 @@ body {
 .controles {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 button {
@@ -220,9 +222,11 @@ button:hover {
 }
 
 #tablero {
+    width: min(100%, max(150px, calc(100dvh - 410px)));
+    margin-inline: auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
     gap: 10px;
     background: var(--tablero);
     padding: 10px;
@@ -341,7 +345,7 @@ body[data-paleta="clasica"] .celda.v2048 {
 }
 
 .instrucciones {
-    margin-top: 25px;
+    margin-top: 12px;
     line-height: 1.5;
 }
 
@@ -367,6 +371,8 @@ body[data-paleta="clasica"] .celda.v2048 {
 }
 
 .ventana-final {
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
     background: var(--contenedor);
     color: var(--texto);
     padding: 30px;
@@ -417,5 +423,69 @@ body[data-paleta="clasica"] .celda.v2048 {
     #tablero {
         gap: 6px;
         padding: 6px;
+    }
+}
+
+@media (max-height: 500px) and (min-width: 600px) {
+    .contenedor {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px 16px;
+        max-width: 850px;
+        padding: 12px;
+    }
+
+    .contenedor > :not(#tablero) {
+        grid-column: 2;
+        margin-block: 0;
+    }
+
+    #tablero {
+        grid-column: 1;
+        grid-row: 1 / 6;
+        width: min(100%, calc(100dvh - 110px));
+    }
+
+    .encabezado h1 {
+        font-size: 28px;
+    }
+
+    .instrucciones p {
+        font-size: 12px;
+    }
+}
+
+@media (max-height: 700px) and (max-width: 599px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .contenedor {
+        padding: 10px;
+    }
+
+    .encabezado h1 {
+        font-size: 30px;
+    }
+
+    .puntuacion {
+        padding: 8px 12px;
+    }
+
+    button {
+        padding: 8px 10px;
+    }
+
+    .personalizacion p {
+        margin-bottom: 6px;
+    }
+
+    .instrucciones {
+        line-height: 1.35;
+    }
+
+    .instrucciones p {
+        font-size: 13px;
+        margin-bottom: 4px;
     }
 }

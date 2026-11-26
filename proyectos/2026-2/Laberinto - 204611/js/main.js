@@ -82,7 +82,21 @@ let movimientos = 0;
 let completado = false;
 
 // Carga un nivel y devuelve al jugador a la casilla inicial.
-n
+function cargarNivel() {
+  const mapa = niveles[nivelActual];
+  const filaInicio = mapa.findIndex(fila => fila.includes('S'));
+  jugador = { x: mapa[filaInicio].indexOf('S'), y: filaInicio };
+  movimientos = 0;
+  completado = false;
+  textoNivel.textContent = `${nivelActual + 1} / ${niveles.length}`;
+  textoMovimientos.textContent = movimientos;
+  mensaje.textContent = '¡Encuentra la salida!';
+  mensaje.classList.remove('exito');
+  siguiente.hidden = true;
+  controles.forEach(boton => boton.disabled = false);
+  dibujarLaberinto();
+  actualizarProgreso();
+}
 
 // Dibuja el mapa con una cuadrícula de divs.
 function dibujarLaberinto() {
