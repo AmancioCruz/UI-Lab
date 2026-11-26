@@ -24,6 +24,14 @@
 }
 
 body {
+    --lado-lienzo: min(60vw, 500px, max(120px, calc((100dvh - 200px) / 1.5)));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    min-height: 100dvh;
+    padding: 68px 16px 20px;
     text-align: center;
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -31,10 +39,13 @@ body {
 .canvas-wrapper {
     position: relative;
     display: inline-block;
-    margin-top: 130px;
+    width: var(--lado-lienzo);
+    margin: calc(var(--lado-lienzo) * 0.25) auto;
 }
 
 canvas {
+    width: 100%;
+    height: auto;
     display: block; /* Evita el pequeño espacio fantasma debajo del canvas */
     border: solid 5px   var(--cafe-oscuro);
     background-color: var(--fondo-canvas);
@@ -43,26 +54,28 @@ canvas {
 .canvas-frame {
     position: absolute;
     /* Hace que el marco sobresalga 45px por cada lado y abrace los bordes del canvas */
-    top: -110px;
-    left: -110px;
-    width: calc(120% + 150px);
-    height: calc(120% + 150px);
+    top: -25%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
     pointer-events: none; /* Permite hacer clic a través de la imagen sin estorbar */
     z-index: 2;
     opacity: 0.9;
 }
 /* Contenedor donde contiene los botones alineados */
 #controls {
-    margin-top: 130px;
+    width: min(100%, 720px);
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 /* Agregamos el estilo base de los botones, paleta verde/café, relieve inferior y transiciones suaves */
 #controls button {
-    padding: 8px 16px;
+    min-height: 44px;
+    padding: 10px 12px;
     background-color: var(--verde-boton);
     color: var(--texto-boton);
     border: 2px solid var(--cafe-borde);
@@ -87,70 +100,40 @@ canvas {
 /* Etiqueta para evitar el desplazamiento del label */
 #speed-label {
     width: 135px;
-    text-align: left;
+    text-align: center;
     font-size: 14px;
     font-weight: 600;
     color: #222;
     font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 599px) {
     body {
-        padding: 68px 12px 20px;
-    }
-
-    .canvas-wrapper {
-        width: min(62vw, 500px, max(160px, calc((100dvh - 230px) / 1.5)));
-        margin-top: clamp(36px, 12vw, 100px);
-    }
-
-    canvas {
-        width: 100%;
-        height: auto;
-    }
-
-    .canvas-frame {
-        top: -22%;
-        left: -22%;
-        width: 150%;
-        height: 150%;
-    }
-
-    #controls {
-        margin: clamp(40px, 15vw, 120px) auto 0;
-        max-width: 560px;
-        gap: 8px;
-    }
-
-    #controls button {
-        min-height: 44px;
-        padding: 10px 12px;
-    }
-
-    #speed-label {
-        text-align: center;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 1023px) and (max-height: 500px) {
-    body {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        align-items: center;
-        min-height: 100dvh;
-        gap: 12px;
-        padding-top: 60px;
-    }
-
-    .canvas-wrapper {
-        width: min(70%, calc((100dvh - 130px) / 1.5));
-        margin: 36px auto;
+        --lado-lienzo: min(60vw, 500px, max(120px, calc((100dvh - 260px) / 1.5)));
     }
 
     #controls {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin: 0;
+        width: min(100%, 360px);
+    }
+
+    #speed-label {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+}
+
+@media (min-width: 600px) and (max-height: 500px) {
+    body {
+        --lado-lienzo: min(28vw, 500px, max(100px, calc((100dvh - 100px) / 1.5)));
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr);
+    }
+
+    #controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     #speed-label {
